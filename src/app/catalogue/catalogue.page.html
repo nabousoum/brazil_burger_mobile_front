@@ -19,25 +19,18 @@
       <h3>slide 3</h3>
     </ion-slide>
   </ion-slides>
-
-  <ion-card>
-    <ion-card-header>
-      <ion-card-subtitle>3000 fcfa</ion-card-subtitle>
-      <ion-card-title>Burger simple</ion-card-title>
-    </ion-card-header>
+  <ng-container *ngFor="let catalogue of catalogues">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-subtitle>{{catalogue.prix}} fcfa</ion-card-subtitle>
+        <ion-card-title>{{catalogue.nom}}</ion-card-title>
+      </ion-card-header>
+    
+      <ion-card-content>
+        <img src="data:image/png;base64,{{catalogue?.image}}"  >
+        <ion-button color="warning">Detail</ion-button>
+      </ion-card-content>
+    </ion-card>
+  </ng-container>
   
-    <ion-card-content>
-      <img src="assets/burgerCard3.jpg" >
-    </ion-card-content>
-  </ion-card>
-  <ion-card>
-    <ion-card-header>
-      <ion-card-subtitle>3000 fcfa</ion-card-subtitle>
-      <ion-card-title>Burger simple</ion-card-title>
-    </ion-card-header>
-  
-    <ion-card-content>
-      <img src="assets/burgerCard3.jpg" >
-    </ion-card-content>
-  </ion-card>
 </ion-content>
