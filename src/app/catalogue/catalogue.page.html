@@ -16,16 +16,15 @@
       <img src="assets/burgerCard3.jpg" >
     </ion-slide>
   </ion-slides>
-  <div class="choices-catalogues">
-    <ul class="nav nav-pills">
-        <li class=" nav-item li2">
-          <button class="nav-link"  (click)="filterProduct('burger')">BURGERS</button>
-        </li>
-        <li class=" nav-item li2">
-            <button class="nav-link" (click)="filterProduct('menu')">MENUS</button>
-          </li>
-      </ul>
-</div>
+
+  <ion-segment >
+    <ion-segment-button  (click)="filterProduct('burger')" value="friends">
+      <ion-label>Burger</ion-label>
+    </ion-segment-button>
+    <ion-segment-button  (click)="filterProduct('menu')" value="enemies">
+      <ion-label>Menu</ion-label>
+    </ion-segment-button>
+  </ion-segment>
   <ng-container *ngFor="let catalogue of catalogues">
     <ion-card>
       <ion-card-header>
@@ -35,8 +34,9 @@
     
       <ion-card-content>
         <img src="data:image/png;base64,{{catalogue?.image}}">
-        <a routerLink="">
-          <ion-button color="warning">Detail</ion-button>
+        <a routerLink="/detail">
+          <ion-button color="warning"><ion-icon name="information-circle-outline"></ion-icon>
+            </ion-button>
         </a>
       </ion-card-content>
     </ion-card>
