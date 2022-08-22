@@ -22,4 +22,17 @@ export class CataloguePage implements OnInit {
     })
   }
 
+  filterProduct(type:string){
+    this.catalogueServ.all().subscribe(data => {
+      if(type!=""){
+      this.catalogues = data.produits?.filter(product => product.type === type)
+      }
+      else{
+        this.catalogues = data.produits
+      }
+    })
+  
+  
+}
+
 }

@@ -19,6 +19,20 @@
       <h3>slide 3</h3>
     </ion-slide>
   </ion-slides>
+  <div class="choices-catalogues">
+    <ul class="nav nav-pills">
+        <li class="nav-item">
+          <button class=" nav-link" (click)="filterProduct('')"
+             data-toggle="tab">CATALOGUE</button>
+        </li>
+        <li class=" nav-item li2">
+          <button class="nav-link"  (click)="filterProduct('burger')">BURGERS</button>
+        </li>
+        <li class=" nav-item li2">
+            <button class="nav-link" (click)="filterProduct('menu')">MENUS</button>
+          </li>
+      </ul>
+</div>
   <ng-container *ngFor="let catalogue of catalogues">
     <ion-card>
       <ion-card-header>
