@@ -3,12 +3,16 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { catchError, tap, map } from 'rxjs/operators';
 import { Catalogue } from '../models/catalogue';
+import { environment } from 'src/environments/environment';
+
+const apiUrl = environment.apiUrl
+
 @Injectable({
   providedIn: 'root'
 })
 export class CatalogueService {
 
-  private url:string = "http://127.0.0.1:8000/api/catalogues"
+  private url:string = `${apiUrl}/catalogues`
   constructor(
     private http:HttpClient
   ) { }

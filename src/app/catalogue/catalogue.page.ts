@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { environment } from 'src/environments/environment';
 import { Produit } from '../shared/models/produit';
 import { CatalogueService } from '../shared/services/catalogue.service';
+
 
 
 @Component({
@@ -9,6 +11,8 @@ import { CatalogueService } from '../shared/services/catalogue.service';
   styleUrls: ['./catalogue.page.scss'],
 })
 export class CataloguePage implements OnInit {
+
+   pathImage = environment.pathImage
   catalogues: any[] = [];
 
   constructor(
