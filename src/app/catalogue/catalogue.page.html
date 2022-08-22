@@ -4,6 +4,40 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content [fullscreen]="true">
+  <ion-slides>
+    <ion-slide>
+      <img src="assets/burgerCard.jpg" >
+      <h3>slide 1</h3>
+    </ion-slide>
+    <ion-slide>
+      <img src="assets/burgerCard2.jpg" >
+      <h3>slide 2</h3>
+    </ion-slide>
+    <ion-slide>
+      <img src="assets/burgerCard3.jpg" >
+      <h3>slide 3</h3>
+    </ion-slide>
+  </ion-slides>
 
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle>3000 fcfa</ion-card-subtitle>
+      <ion-card-title>Burger simple</ion-card-title>
+    </ion-card-header>
+  
+    <ion-card-content>
+      <img src="assets/burgerCard3.jpg" >
+    </ion-card-content>
+  </ion-card>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle>3000 fcfa</ion-card-subtitle>
+      <ion-card-title>Burger simple</ion-card-title>
+    </ion-card-header>
+  
+    <ion-card-content>
+      <img src="assets/burgerCard3.jpg" >
+    </ion-card-content>
+  </ion-card>
 </ion-content>
