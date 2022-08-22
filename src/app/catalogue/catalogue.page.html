@@ -5,26 +5,19 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-slides>
+  <ion-slides  pager="true" [options]="slideOpts">
     <ion-slide>
       <img src="assets/burgerCard.jpg" >
-      <h3>slide 1</h3>
     </ion-slide>
     <ion-slide>
       <img src="assets/burgerCard2.jpg" >
-      <h3>slide 2</h3>
     </ion-slide>
     <ion-slide>
       <img src="assets/burgerCard3.jpg" >
-      <h3>slide 3</h3>
     </ion-slide>
   </ion-slides>
   <div class="choices-catalogues">
     <ul class="nav nav-pills">
-        <li class="nav-item">
-          <button class=" nav-link" (click)="filterProduct('')"
-             data-toggle="tab">CATALOGUE</button>
-        </li>
         <li class=" nav-item li2">
           <button class="nav-link"  (click)="filterProduct('burger')">BURGERS</button>
         </li>
@@ -41,8 +34,10 @@
       </ion-card-header>
     
       <ion-card-content>
-        <img src="data:image/png;base64,{{catalogue?.image}}"  >
-        <ion-button color="warning">Detail</ion-button>
+        <img src="data:image/png;base64,{{catalogue?.image}}">
+        <a routerLink="">
+          <ion-button color="warning">Detail</ion-button>
+        </a>
       </ion-card-content>
     </ion-card>
   </ng-container>

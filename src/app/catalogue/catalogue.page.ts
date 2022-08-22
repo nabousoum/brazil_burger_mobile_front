@@ -15,6 +15,16 @@ export class CataloguePage implements OnInit {
     private catalogueServ:CatalogueService
   ) { }
 
+  slideOpts = {
+    initialSlide: 1,
+    speed: 100,
+    loop:true,
+    autoplay:{
+      delay: 3000
+
+    }
+  };
+
   ngOnInit() {
     this.catalogueServ.all().subscribe(data => {
       this.catalogues = data.produits
