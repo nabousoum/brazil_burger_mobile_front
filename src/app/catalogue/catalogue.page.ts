@@ -11,7 +11,8 @@ import { AlertController, LoadingController } from '@ionic/angular';
   styleUrls: ['./catalogue.page.scss'],
 })
 export class CataloguePage implements OnInit {
-  /* declrations */
+  /* declarations */
+  valuePrix: number = 0;
   pathImage = environment.pathImage
   catalogues: any[]|undefined = undefined;
 
@@ -41,9 +42,10 @@ export class CataloguePage implements OnInit {
   /* filtres */
     filterProduct(type:string){
       this.catalogueServ.all().subscribe(data => {
-        if(type!=""){
+        if(type=="burger" || type=="menu") {
         this.catalogues = data.produits?.filter(product => product.type === type)
         }
+
         else{
           this.catalogues = data.produits
         }
@@ -64,20 +66,38 @@ export class CataloguePage implements OnInit {
   /* alert range */
   async presentAlert() {
     const alert = await this.alertController.create({
-      header: 'Filtrez par prix',
-      buttons: ['OK'],
-      inputs:[
-        {
-          label: '1000',
-          type: 'range',
-          min: '0',
-          max: '11'
-        },
-      
+      message:"choissez un prix entre 1000 et 20000" ,
+      inputs: [
+      {   
+        name: 'prix',
+        type: 'range',
+        min: 1000,
+        max: 3000,
+        step:1000      
+      }
+    ],    
+      buttons: [
+          {
+              text: 'Cancel',
+              role: 'cancel',
+              cssClass: 'secondary',
+              handler: () => {
+                  console.log('Confirm Cancel');
+              }
+          }, 
+          {
+              text: 'Ok',
+              handler: (alertData) => { 
+                  console.log(alertData.prix);
+                  this.valuePrix = alertData.prix;
+                  this.catalogueServ.all().subscribe(data => {
+                    this.catalogues = data.produits?.filter(product => product.prix == this.valuePrix)
+                  })
+              }
+          }
       ]
-    });
-
-    await alert.present();
+  });
+  await alert.present();
   }
 
 }
