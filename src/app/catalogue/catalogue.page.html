@@ -28,24 +28,27 @@
   </ion-slides>
 
   <ion-segment>
-    <ion-segment-button  (click)="filterProduct('burger')" value="friends">
+    <ion-segment-button  (click)="filterProduct('burger')" value="burger">
       <ion-label>Burger</ion-label>
     </ion-segment-button>
-    <ion-segment-button  (click)="filterProduct('menu')" value="enemies">
+    <ion-segment-button  (click)="filterProduct('menu')" value="menu">
       <ion-label>Menu</ion-label>
+    </ion-segment-button>
+    <ion-segment-button (click)="presentAlert()" value="prix">
+      <ion-label>Prix</ion-label>
     </ion-segment-button>
   </ion-segment>
   <ng-container *ngFor="let catalogue of catalogues">
     <ion-card>
       <ion-card-header>
-        <ion-card-subtitle>{{catalogue.prix}} fcfa</ion-card-subtitle>
+        <ion-card-subtitle><ion-icon class="all" name="pricetags-outline"></ion-icon>{{catalogue.prix}} fcfa</ion-card-subtitle>
         <ion-card-title>{{catalogue.nom}}</ion-card-title>
       </ion-card-header>
     
       <ion-card-content>
         <img src="data:image/png;base64,{{catalogue?.image}}">
         <a routerLink="/detail/{{catalogue?.type}}/{{catalogue?.id}}">
-          <ion-button color="warning"><ion-icon name="information-circle-outline"></ion-icon>
+          <ion-button class="all"><ion-icon name="information-circle-outline"></ion-icon>
             </ion-button>
         </a>
       </ion-card-content>

@@ -9,9 +9,11 @@
 <ion-content>
   <ng-container *ngIf="(produit|async)?.menu?.type == 'menu'">
     <img src="data:image/png;base64,{{(produit|async)?.menu?.image}}" alt="...">
+    <p class="prix"> <ion-icon class="all" name="pricetags-outline"></ion-icon>{{(produit|async)?.menu?.prix}} FCFA</p>
   </ng-container>  
   <ng-container *ngIf="(produit|async)?.burger?.type == 'burger'">
     <img src="data:image/png;base64,{{(produit|async)?.burger?.image}}" alt="...">
+    <p class="prix"> <ion-icon class="all" name="pricetags-outline"></ion-icon>{{(produit|async)?.burger?.prix}} FCFA</p>
   </ng-container> 
   <ng-container *ngIf="(produit|async)?.burger?.type == 'burger'" >
     <p>
@@ -23,6 +25,5 @@
         {{(produit|async)?.menu?.description}}
     </p>
   </ng-container>
-  <ion-button>Ajouter</ion-button>
-  
+  <ion-button class="all">Ajouter</ion-button>
 </ion-content>

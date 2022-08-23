@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Produit } from '../shared/models/produit';
 import { CatalogueService } from '../shared/services/catalogue.service';
-import { LoadingController } from '@ionic/angular';
+import { AlertController, LoadingController } from '@ionic/angular';
 
 
 @Component({
@@ -17,7 +17,8 @@ export class CataloguePage implements OnInit {
 
   constructor(
     private catalogueServ:CatalogueService,
-    private loadingCtrl: LoadingController
+    private loadingCtrl: LoadingController,
+    private alertController: AlertController
   ) { }
 
   /* slides */
@@ -58,6 +59,25 @@ export class CataloguePage implements OnInit {
     });
 
     loading.present();
+  }
+
+  /* alert range */
+  async presentAlert() {
+    const alert = await this.alertController.create({
+      header: 'Filtrez par prix',
+      buttons: ['OK'],
+      inputs:[
+        {
+          label: '1000',
+          type: 'range',
+          min: '0',
+          max: '11'
+        },
+      
+      ]
+    });
+
+    await alert.present();
   }
 
 }
