@@ -27,6 +27,23 @@
         {{(produit|async)?.menu?.description}}
     </p>
   </ng-container>
-  
-  <ion-button class="all">Ajouter</ion-button>
+   <!-- Quantity -->
+   <div class="d-flex mb-4" class="qte">
+    <ion-button class="btn size"
+      onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
+      <ion-icon name="remove-outline"></ion-icon>
+    </ion-button>
+
+    <div class="form-outline">
+      <input id="form1" min="0" name="quantity" value="1" type="number" class="form-control" />
+    </div>
+
+    <ion-button  class="btn size"
+      onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
+      <ion-icon name="add-outline"></ion-icon>
+    </ion-button>
+  </div>
+  <!-- Quantity -->
+
+  <ion-button class="all add">Ajouter</ion-button>
 </ion-content>
