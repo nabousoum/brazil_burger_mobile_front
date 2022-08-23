@@ -66,13 +66,13 @@ export class CataloguePage implements OnInit {
   /* alert range */
   async presentAlert() {
     const alert = await this.alertController.create({
-      message:"choissez un prix entre 1000 et 20000" ,
+      message:`choisissez un prix entre 1000 et 20000 ` ,
       inputs: [
       {   
         name: 'prix',
         type: 'range',
         min: 1000,
-        max: 3000,
+        max: 20000,
         step:1000      
       }
     ],    
@@ -91,7 +91,7 @@ export class CataloguePage implements OnInit {
                   console.log(alertData.prix);
                   this.valuePrix = alertData.prix;
                   this.catalogueServ.all().subscribe(data => {
-                    this.catalogues = data.produits?.filter(product => product.prix == this.valuePrix)
+                    this.catalogues = data.produits?.filter(product => product.prix <= this.valuePrix)
                   })
               }
           }
