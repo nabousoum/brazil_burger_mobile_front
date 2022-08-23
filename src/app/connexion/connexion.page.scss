@@ -1,11 +1,12 @@
 form{
-    margin-top: 20%;
+    margin-top: 15%;
 }
 img{
     margin-left: 35%;
     height: 100px;
     width: 100px;
     border-radius: 50%;
+    margin-top: 10% ;
 }
 title{
     color: white;
@@ -16,4 +17,11 @@ a{
 }
 ion-button{
     margin-top: 5%;
+    --background-hover: #C2B364;
+}
+.form_error{
+    color: red;
+}
+p{
+    margin-left: 50%;
 }

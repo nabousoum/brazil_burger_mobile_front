@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { TokenService } from './shared/services/token.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,18 @@ import { Component } from '@angular/core';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  constructor() {}
+
+
+  constructor(
+    private router: Router,
+    private tokenService: TokenService
+  ) {}
+
+  isLogged:boolean = this.tokenService.isLogged()
+
+  logout(){
+    localStorage.clear()
+    window.location.reload()
+    this.router.navigate(['/catalogue'])
+  }
 }

@@ -8,18 +8,25 @@
 </ion-header>
 <ion-content>
   <img src="assets/logo.bin" alt="">
-  <form>
+  <form #f="ngForm" (ngSubmit)="f.form.valid && onSubmit()">
     <ion-item lines="full">
+      <div class="form_error" *ngIf="login.errors && f.submitted">
+        Email is required !
+      </div>
       <ion-label position="floating">Email</ion-label>
-      <ion-input type="text" required></ion-input>
+      <ion-input name="login" #login="ngModel" [(ngModel)]="form.login" type="text" required></ion-input>
     </ion-item>
     <ion-item lines="full">
+      <div class="form_error" *ngIf="password.errors && f.submitted">
+        Password is required !
+      </div>
       <ion-label position="floating">Password</ion-label>
-      <ion-input type="password" required></ion-input>
+      <ion-input name="password" [(ngModel)]="form.password" #password="ngModel"  type="password" required></ion-input>
     </ion-item>
     <ion-row>
       <ion-col>
-        <ion-button type="submit" class="all" expand="block">connexion</ion-button>
+        <ion-button (click)="presentToast()" type="submit" class="all" expand="block">connexion</ion-button>
+        <p>ou</p>
         <ion-button class="btn" routerLink="/inscription" color="light" expand="block">Inscription</ion-button>
       </ion-col>
     </ion-row>
