@@ -7,6 +7,22 @@
 </ion-header>
 
 <ion-content>
-  DETAIL
+  <ng-container *ngIf="(produit|async)?.menu?.type == 'menu'">
+    <img src="data:image/png;base64,{{(produit|async)?.menu?.image}}" alt="...">
+  </ng-container>  
+  <ng-container *ngIf="(produit|async)?.burger?.type == 'burger'">
+    <img src="data:image/png;base64,{{(produit|async)?.burger?.image}}" alt="...">
+  </ng-container> 
+  <ng-container *ngIf="(produit|async)?.burger?.type == 'burger'" >
+    <p>
+        {{(produit|async)?.burger?.description}}
+    </p>
+  </ng-container>
+  <ng-container *ngIf="(produit|async)?.menu?.type == 'menu'">
+    <p>
+        {{(produit|async)?.menu?.description}}
+    </p>
+  </ng-container>
+  <ion-button>Ajouter</ion-button>
   
 </ion-content>

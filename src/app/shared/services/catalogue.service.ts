@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { catchError, tap, map } from 'rxjs/operators';
 import { Catalogue } from '../models/catalogue';
 import { environment } from 'src/environments/environment';
+import { Detail } from '../models/detail';
 
 const apiUrl = environment.apiUrl
 
@@ -13,10 +14,14 @@ const apiUrl = environment.apiUrl
 export class CatalogueService {
 
   private url:string = `${apiUrl}/catalogues`
+  private urlDetail:string = `${apiUrl}/details`
+
+
   constructor(
     private http:HttpClient
   ) { }
 
+  /* catalogue */
   all():Observable<Catalogue> {
     return this.http.get<any>(this.url).pipe(
       map(data=>{
@@ -25,6 +30,15 @@ export class CatalogueService {
           menus:data['hydra:member'][1]['menus'],
         }
         data.produits=[...catalogues.menus,...catalogues.burgers]
+        return data
+      }),
+    )
+  }
+
+  /* detail produit */
+  produit(id:number):Observable<Detail> {
+    return this.http.get<any>(`${this.urlDetail}/${id}`).pipe(
+      map(data=>{
         return data
       }),
     )
