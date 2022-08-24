@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { ICredential } from '../shared/models/Icredentials';
 import { AuthServService } from '../shared/services/auth-serv.service';
+import { StorageService } from '../shared/services/storage.service';
 
 @Component({
   selector: 'app-connexion',
@@ -19,7 +20,8 @@ export class ConnexionPage implements OnInit {
   constructor(
     private authServ : AuthServService,
     private router : Router,
-    public toastController: ToastController
+    public toastController: ToastController,
+    private storage: StorageService,
   ) { }
 
   ngOnInit() {
@@ -29,12 +31,17 @@ export class ConnexionPage implements OnInit {
   onSubmit(){
     this.authServ.login(this.form).subscribe(
       data=>{
-          console.log(data)
-          this.router.navigate(['/catalogue'])
-          window.location.reload()
+        this.storage.addData(data.token,data.id)
+        this.storage.bool.next(true);
+        //this.router.navigateByUrl('/catalogue',{ skipLocationChange: true })
+        //this.router.navigateByUrl('/catalogue')
+        this.router.navigate(['/catalogue'],{skipLocationChange:true});
+
+        console.log("get data "+ this.storage.getData('token'))
       },
       err=>{
         console.log(err)
+        this.storage.bool.next(true);
       },
     )
   }
@@ -47,6 +54,5 @@ export class ConnexionPage implements OnInit {
     });
     toast.present();
   }
-
 
 }

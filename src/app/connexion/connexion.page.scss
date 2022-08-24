@@ -1,5 +1,5 @@
 form{
-    margin-top: 15%;
+    margin-top: 2%;
 }
 img{
     margin-left: 35%;
@@ -18,10 +18,14 @@ a{
 ion-button{
     margin-top: 5%;
     --background-hover: #C2B364;
+    --background: #C2B364;
 }
 .form_error{
     color: red;
 }
 p{
     margin-left: 50%;
+}
+ion-title{
+    margin-left: 30%;
 }

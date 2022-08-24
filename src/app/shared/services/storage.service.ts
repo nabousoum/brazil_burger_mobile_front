@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage-angular';
+import { BehaviorSubject } from 'rxjs';
 
 const STORAGE_KEY = 'token'
 
@@ -11,31 +12,24 @@ export class StorageService {
   constructor(
     private storage: Storage,
   ) {
-   
+    this.storage.create();
    }
 
-  // async init(){
-  //   console.log("test 1")
-  //   await this.storage.create();
-  //   console.log("test 2")
-  // }
+    bool = new BehaviorSubject<any>(false);
+    getBool(){
+     return this.bool.asObservable();
+    }
 
-  getData(){
-    return this.storage.get(STORAGE_KEY).then(data=>{
-      console.log("promesse"+data)
-    });
+    async getData(item){
+    return await this.storage.get(item)
   }
 
-   addData(item){
-    //  const storedData = await this.storage.get(STORAGE_KEY) 
-    //  storedData.push(item)
-    //console.log("item "+item)
-    return  this.storage.set('token', item)
+  async addData(item,id){
+     await  this.storage.set('token', item)
+     await this.storage.set('id', id)
   }
 
-  async removeItem(index){
-    const storedData = await this.storage.get(STORAGE_KEY)
-    storedData.splice(index,1)
-    return this.storage.set(STORAGE_KEY, storedData)
+  removeItem(item){
+    this.storage.remove(item)
   }
 }

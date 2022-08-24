@@ -91,7 +91,7 @@ export class CataloguePage implements OnInit {
                   console.log(alertData.prix);
                   this.valuePrix = alertData.prix;
                   this.catalogueServ.all().subscribe(data => {
-                    this.catalogues = data.produits?.filter(product => product.prix <= this.valuePrix)
+                    this.catalogues = data.produits?.filter(product => product.prix >= this.valuePrix)
                   })
               }
           }

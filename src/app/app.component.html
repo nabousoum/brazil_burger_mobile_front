@@ -16,14 +16,14 @@
           <ion-icon name="cart-outline"></ion-icon>
           <ion-label>Panier</ion-label>
         </ion-item>
-        <ng-container *ngIf="isLogged == true">
-          <ion-item>
+        <ng-container>
+          <ion-item routerLink="commandes">
             <ion-icon name="newspaper-outline"></ion-icon>
             <ion-label>Mes commandes</ion-label>
           </ion-item>
         </ng-container>
-        <ng-container *ngIf="isLogged == true">
-          <ion-item (click)="logout()">
+        <ng-container>
+          <ion-item *ngIf="isLogged == true">
             <ion-icon name="person-outline"></ion-icon>
             <ion-label>Deconnexion</ion-label>
           </ion-item>
@@ -40,7 +40,7 @@
   <ion-router-outlet id="main"></ion-router-outlet>
   <ion-tabs>
     <ion-tab-bar slot="bottom">
-      <ng-container  *ngIf="isLogged == false">
+      <ng-container *ngIf="isLogged == false">
         <ion-tab-button routerLink="/connexion" tab="speakers">
           <ion-icon name="person-outline"></ion-icon>
            <ion-label>Connexion</ion-label>
@@ -56,8 +56,8 @@
         <ion-icon name="cart-outline"></ion-icon>
         <ion-label>Panier</ion-label>
       </ion-tab-button>
-    <ng-container *ngIf="isLogged == true">
-      <ion-tab-button tab="about">
+    <ng-container >
+      <ion-tab-button routerLink="commandes" tab="about">
         <ion-icon name="newspaper-outline"></ion-icon>
         <ion-label>Mes commandes</ion-label>
       </ion-tab-button>
