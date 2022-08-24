@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map,tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { ICredential, IToken } from '../models/Icredentials';
+import { StorageService } from './storage.service';
 
 const apiUrl = environment.apiUrl
 
@@ -16,14 +17,19 @@ export class AuthServService {
 
   constructor(
     private http:HttpClient,
+    private storage:StorageService
   ) { }
 
   /* function login */
   login(credentials:ICredential):Observable<IToken>{
     return this.http.post<any>(this.url, credentials)
-    .pipe(map(user => {
-      localStorage.setItem('token', JSON.stringify(user));
-      return user;
-    }));
+    // .pipe(map(user => {
+    //   console.log("user "+user.token)
+    //   localStorage.setItem('token', JSON.stringify(user));
+    //   this.storage.addData(user.token)
+    //   console.log("getData "+this.storage.getData())
+    //   return user;
+    // }));
+   
   }
 }
