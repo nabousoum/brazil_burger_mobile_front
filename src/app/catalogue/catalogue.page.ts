@@ -66,14 +66,14 @@ export class CataloguePage implements OnInit {
   /* alert range */
   async presentAlert() {
     const alert = await this.alertController.create({
-      message:`choisissez un prix entre 1000 et 20000 ` ,
+      message:`choisissez un prix entre 1000 et 20000 ${this.valuePrix}` ,
       inputs: [
       {   
         name: 'prix',
         type: 'range',
         min: 1000,
         max: 20000,
-        step:1000      
+        step:1000,      
       }
     ],    
       buttons: [

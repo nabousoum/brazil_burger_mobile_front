@@ -20,7 +20,7 @@ export class CommandeService {
   ) { }
 
   /* les commandes d un client */
-  commandeClient(id:any){
+  commandeClient(id:any,token:any){
     this.storage.getData('token').then(
       (result) => {
         this.data = result
@@ -31,6 +31,7 @@ export class CommandeService {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json',
+        'Authorization': `Bearer ${token}`
       })
     };
     return this.http.get<any>((`${this.urlCommande}/${id}/commandes`),httpOptions)

@@ -1,27 +1,29 @@
 <ion-header>
-  <ion-toolbar class="all">
+  <ion-toolbar >
     <ion-title>Mes commandes </ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="catalogue"></ion-back-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
  
   <ion-item>
-    <ion-label position="fixed">Filtre par etat</ion-label>
+    <ion-label class="all-write">Filtre par etat</ion-label>
     <ion-input  [(ngModel)]="searchTerm" type="text"></ion-input>
   </ion-item>
   <ion-item>
-    <ion-label position="fixed">Filtre par date</ion-label>
+    <ion-label class="all-write" position="fixed">Filtre par date</ion-label>
     <ion-input [(ngModel)]="searchTermDate" type="date"></ion-input>
   </ion-item>
   <ion-list *ngFor="let commande of commandes
     | commandeFilter:searchTerm
     | CommandeDateFilter:searchTermDate">
     <ion-item routerLink="detail-commande/{{commande.id}}">
-      <ion-label class="ion-text-wrap">{{commande.id}}</ion-label>
-      <ion-label >{{commande.montantCommande}}</ion-label>
-      <ion-label >{{commande.etat}}</ion-label>
-      <ion-label side="end"><ion-icon color="danger" name="ban-outline"></ion-icon></ion-label>
+      <ion-label >{{commande.id}}</ion-label>
+      <ion-label >{{commande.montantCommande}} fcfa</ion-label>
+      <ion-label ><ion-icon color="danger" name="ban-outline"></ion-icon></ion-label>
     </ion-item>
   </ion-list>
 </ion-content>

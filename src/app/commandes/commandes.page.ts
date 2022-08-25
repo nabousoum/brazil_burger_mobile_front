@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { CommandeService } from '../shared/services/commande.service';
 import { StorageService } from '../shared/services/storage.service';
 
@@ -10,6 +11,7 @@ import { StorageService } from '../shared/services/storage.service';
 export class CommandesPage implements OnInit {
 
   id:any
+  token :any
   commandes :any[] = []
 
   searchTerm:any
@@ -17,18 +19,22 @@ export class CommandesPage implements OnInit {
   
   constructor(
     private commandeServ: CommandeService,
-    private storage: StorageService
+    private storage: StorageService,
+    private router: Router
   ) { }
 
-  ngOnInit() {
-   this.storage.getData('id').then((data)=>{
-     this.id = data
-     this.commandeServ.commandeClient(this.id).subscribe(data=>{
-      this.commandes = data.filter(commande => commande.etat == "en cours")
-      //console.log(data)
-    })
+ async ngOnInit() {
+   await this.storage.getData('id').then((data)=>{
+     this.id = data})
+     await this.storage.getData('token').then((data)=>{
+      this.token = data})
+    this.commandeServ.commandeClient(this.id,this.token).subscribe(data=>{
+      this.commandes = data
     })
      
+  }
+  navigateTo(url) {
+    this.router.navigateByUrl(url)
   }
 
 }
