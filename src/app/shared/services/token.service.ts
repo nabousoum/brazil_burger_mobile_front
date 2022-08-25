@@ -19,9 +19,6 @@ export class TokenService {
       this.storage.addData(token,id).then(()=>{
         window.location.reload();
       } );
-      // var tokenI:string  = tok;
-      // var decoded: any = jwt_decode(tokenI);
-      // console.log("role "+decoded.roles[0]);
  }
   isLogged():boolean{
     let test:boolean

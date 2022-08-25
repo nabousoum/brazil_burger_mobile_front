@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { CommandeService } from 'src/app/shared/services/commande.service';
-import { StorageService } from 'src/app/shared/services/storage.service';
+import { CommandeService } from '../shared/services/commande.service';
+import { StorageService } from '../shared/services/storage.service';
 
 @Component({
-  selector: 'app-detail-commande',
-  templateUrl: './detail-commande.page.html',
-  styleUrls: ['./detail-commande.page.scss'],
+  selector: 'app-detail-com',
+  templateUrl: './detail-com.page.html',
+  styleUrls: ['./detail-com.page.scss'],
 })
-export class DetailCommandePage implements OnInit {
+export class DetailComPage implements OnInit {
 
   commande:any=null
   private id :any = 0;
@@ -26,8 +26,7 @@ export class DetailCommandePage implements OnInit {
      this.comServ.detailCommande(this.id,token).subscribe(data=>{
       console.log("id "+this.id)
       console.log("detail "+data.numeroCommande);
-      this.commande = data
+      this.commande = [...data.burgerCommandes,...data.menuCommandes,...data.boissonCommandes,...data.friteCommandes]
      })
   }
-
 }

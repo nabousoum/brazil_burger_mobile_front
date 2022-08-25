@@ -4,17 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { DetailCommandePageRoutingModule } from './detail-commande-routing.module';
+import { DetailComPageRoutingModule } from './detail-com-routing.module';
 
-import { DetailCommandePage } from './detail-commande.page';
+import { DetailComPage } from './detail-com.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    DetailCommandePageRoutingModule
+    DetailComPageRoutingModule
   ],
-  declarations: [DetailCommandePage]
+  declarations: [DetailComPage]
 })
-export class DetailCommandePageModule {}
+export class DetailComPageModule {}

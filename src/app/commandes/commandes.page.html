@@ -2,7 +2,8 @@
   <ion-toolbar >
     <ion-title>Mes commandes </ion-title>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="catalogue"></ion-back-button>
+      <ion-menu-button class="all-write" menu="main-menu">
+      </ion-menu-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -28,7 +29,7 @@
   <ion-list *ngFor="let commande of commandes
     | commandeFilter:searchTerm
     | CommandeDateFilter:searchTermDate">
-    <ion-item routerLink="/detail-commande/{{commande.id}}">
+    <ion-item routerLink="/detail-com/{{commande.id}}">
       <ion-label >
        N° {{commande.numeroCommande}}
       </ion-label>

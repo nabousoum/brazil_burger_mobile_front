@@ -35,9 +35,10 @@ const routes: Routes = [
     path: 'livreur',
     loadChildren: () => import('./livreur/livreur.module').then( m => m.LivreurPageModule)
   },
+
   {
-    path: 'detail-commande/:id',
-    loadChildren: () => import('../app/commandes/detail-commande/detail-commande.module').then( m => m.DetailCommandePageModule)
+    path: 'detail-com/:id',
+    loadChildren: () => import('./detail-com/detail-com.module').then( m => m.DetailComPageModule)
   }
   
 ];

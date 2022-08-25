@@ -34,14 +34,7 @@ export class ConnexionPage implements OnInit {
   
       this.authServ.login(this.form).subscribe(
       data=>{
-        // this.storage.addData(data.token,data.id).then(()=>{
-        //   window.location.reload();
-        // });
-        // this.storage.bool.next(true);
-        //   this.router.navigateByUrl('/catalogue');
-        // console.log("get data "+ this.storage.getData('token'))
         this.tokenServ.saveToken(data.token,data.id)
-        //  this.storage.getData('token').then(data=>{
           var tokenI:string  = data.token;
           var decoded: any = jwt_decode(tokenI);
           console.log(decoded.roles[0]);
@@ -51,9 +44,6 @@ export class ConnexionPage implements OnInit {
           else{
             this.router.navigate(['/livreur'])
           }
-       
-        // })
-          
       },
       err=>{
         console.log(err)
