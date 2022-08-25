@@ -5,45 +5,52 @@
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
-
-<ion-content>
-  <ng-container *ngIf="(produit|async)?.menu?.type == 'menu'">
-    <h2>{{(produit|async)?.menu?.nom}}</h2>
-    <img src="data:image/png;base64,{{(produit|async)?.menu?.image}}" alt="...">
-    <p class="prix">  <ion-icon class="all" name="pricetags-outline"></ion-icon>{{(produit|async)?.menu?.prix}} FCFA</p>
-  </ng-container>  
-  <ng-container *ngIf="(produit|async)?.burger?.type == 'burger'">
-    <h2>{{(produit|async)?.burger?.nom}}</h2>
-    <img src="data:image/png;base64,{{(produit|async)?.burger?.image}}" alt="...">
-    <p class="prix"> <ion-icon class="all" name="pricetags-outline"></ion-icon>{{(produit|async)?.burger?.prix}} FCFA</p>
-  </ng-container> 
-  <ng-container *ngIf="(produit|async)?.burger?.type == 'burger'" >
-    <p class="description">
-        {{(produit|async)?.burger?.description}}
-    </p>
-  </ng-container>
-  <ng-container *ngIf="(produit|async)?.menu?.type == 'menu'">
-    <p  class="description">
-        {{(produit|async)?.menu?.description}}
-    </p>
-  </ng-container>
-   <!-- Quantity -->
-   <div class="d-flex mb-4" class="qte">
-    <ion-button class="btn size"
-      onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
-      <ion-icon name="remove-outline"></ion-icon>
-    </ion-button>
-
-    <div class="form-outline">
-      <input id="form1" min="0" name="quantity" value="1" type="number" class="form-control" />
+<ng-container *ngIf="(produit|async) == null">
+  <ion-content>
+    <app-loader></app-loader>
+  </ion-content>
+</ng-container>
+<ng-container *ngIf="(produit|async) != null">
+  <ion-content>
+    <ng-container *ngIf="(produit|async)?.menu?.type == 'menu'">
+      <h2>{{(produit|async)?.menu?.nom}}</h2>
+      <img src="data:image/png;base64,{{(produit|async)?.menu?.image}}" alt="...">
+      <p class="prix">  <ion-icon class="all" name="pricetags-outline"></ion-icon>{{(produit|async)?.menu?.prix}} FCFA</p>
+    </ng-container>  
+    <ng-container *ngIf="(produit|async)?.burger?.type == 'burger'">
+      <h2>{{(produit|async)?.burger?.nom}}</h2>
+      <img src="data:image/png;base64,{{(produit|async)?.burger?.image}}" alt="...">
+      <p class="prix"> <ion-icon class="all" name="pricetags-outline"></ion-icon>{{(produit|async)?.burger?.prix}} FCFA</p>
+    </ng-container> 
+    <ng-container *ngIf="(produit|async)?.burger?.type == 'burger'" >
+      <p class="description">
+          {{(produit|async)?.burger?.description}}
+      </p>
+    </ng-container>
+    <ng-container *ngIf="(produit|async)?.menu?.type == 'menu'">
+      <p  class="description">
+          {{(produit|async)?.menu?.description}}
+      </p>
+    </ng-container>
+     <!-- Quantity -->
+     <div class="d-flex mb-4" class="qte">
+      <ion-button class="btn size"
+        onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
+        <ion-icon name="remove-outline"></ion-icon>
+      </ion-button>
+  
+      <div class="form-outline">
+        <input id="form1" min="0" name="quantity" value="1" type="number" class="form-control" />
+      </div>
+  
+      <ion-button  class="btn size"
+        onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
+        <ion-icon name="add-outline"></ion-icon>
+      </ion-button>
     </div>
+    <!-- Quantity -->
+  
+    <ion-button class="all add">Ajouter</ion-button>
+  </ion-content>
+</ng-container>
 
-    <ion-button  class="btn size"
-      onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
-      <ion-icon name="add-outline"></ion-icon>
-    </ion-button>
-  </div>
-  <!-- Quantity -->
-
-  <ion-button class="all add">Ajouter</ion-button>
-</ion-content>

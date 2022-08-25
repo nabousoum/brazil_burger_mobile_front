@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { DetailComPageRoutingModule } from './detail-com-routing.module';
 
 import { DetailComPage } from './detail-com.page';
+import { LoaderComponent } from '../loader/loader.component';
 
 @NgModule({
   imports: [
@@ -15,6 +16,9 @@ import { DetailComPage } from './detail-com.page';
     IonicModule,
     DetailComPageRoutingModule
   ],
-  declarations: [DetailComPage]
+  declarations: [
+    DetailComPage,
+    LoaderComponent
+  ]
 })
 export class DetailComPageModule {}

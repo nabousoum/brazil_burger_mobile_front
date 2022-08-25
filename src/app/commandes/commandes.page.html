@@ -7,37 +7,42 @@
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
-
-<ion-content>
-  <ion-segment  [(ngModel)]="searchTerm" >
-    <ion-segment-button value="en cours">
-      <ion-label>En cours</ion-label>
-    </ion-segment-button>
-    <ion-segment-button value="valide">
-      <ion-label>Valider</ion-label>
-    </ion-segment-button>
-    <ion-segment-button value="annule">
-      <ion-label>Annuler</ion-label>
-    </ion-segment-button>
-  </ion-segment>
-  
-  
-  <ion-item class="date">
-    <ion-label class="all-write" position="fixed">Filtre par date</ion-label>
-    <ion-input [(ngModel)]="searchTermDate" type="date"></ion-input>
-  </ion-item>
-  <ion-list *ngFor="let commande of commandes
-    | commandeFilter:searchTerm
-    | CommandeDateFilter:searchTermDate">
-    <ion-item routerLink="/detail-com/{{commande.id}}">
-      <ion-label >
-       N° {{commande.numeroCommande}}
-      </ion-label>
-      <ng-container *ngIf="commande.etat == 'en cours'">
-        <ion-label >
-          <ion-icon (click)='CommandetoEdit(commande.id)' color="danger" name="ban-outline"></ion-icon>
-        </ion-label>
-      </ng-container>
+<ng-container *ngIf="commandes.length ==0">
+  <ion-content><app-loader></app-loader></ion-content>
+</ng-container>
+<ng-container *ngIf="commandes.length !=0">
+  <ion-content>
+    <ion-segment  [(ngModel)]="searchTerm" >
+      <ion-segment-button value="en cours">
+        <ion-label>En cours</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="valide">
+        <ion-label>Valider</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="annule">
+        <ion-label>Annuler</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+    
+    
+    <ion-item class="date">
+      <ion-label class="all-write" position="fixed">Filtre par date</ion-label>
+      <ion-input [(ngModel)]="searchTermDate" type="date"></ion-input>
     </ion-item>
-  </ion-list>
-</ion-content>
+    <ion-list *ngFor="let commande of commandes
+      | commandeFilter:searchTerm
+      | CommandeDateFilter:searchTermDate">
+      <ion-item routerLink="/detail-com/{{commande.id}}">
+        <ion-label >
+         N° {{commande.numeroCommande}}
+        </ion-label>
+        <ng-container *ngIf="commande.etat == 'en cours'">
+          <ion-label >
+            <ion-icon (click)='CommandetoEdit(commande.id)' color="danger" name="ban-outline"></ion-icon>
+          </ion-label>
+        </ng-container>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ng-container>
+

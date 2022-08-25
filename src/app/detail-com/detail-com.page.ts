@@ -11,6 +11,7 @@ import { StorageService } from '../shared/services/storage.service';
 export class DetailComPage implements OnInit {
 
   commande:any=null
+  montant:any
   private id :any = 0;
   token:any
 
@@ -26,6 +27,7 @@ export class DetailComPage implements OnInit {
      this.comServ.detailCommande(this.id,token).subscribe(data=>{
       console.log("id "+this.id)
       console.log("detail "+data.numeroCommande);
+      this.montant = data.montantCommande
       this.commande = [...data.burgerCommandes,...data.menuCommandes,...data.boissonCommandes,...data.friteCommandes]
      })
   }

@@ -8,6 +8,7 @@ import { CommandesPageRoutingModule } from './commandes-routing.module';
 
 import { CommandesPage } from './commandes.page';
 import { CommandeDateFilter, CommandeFilter } from '../shared/services/commande-filter.pipe';
+import { LoaderComponent } from '../loader/loader.component';
 
 @NgModule({
   imports: [
@@ -19,7 +20,8 @@ import { CommandeDateFilter, CommandeFilter } from '../shared/services/commande-
   declarations: [
     CommandesPage,
     CommandeFilter,
-    CommandeDateFilter
+    CommandeDateFilter,
+    LoaderComponent
   ]
 })
 export class CommandesPageModule {}

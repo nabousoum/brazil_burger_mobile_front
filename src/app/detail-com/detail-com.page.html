@@ -5,59 +5,65 @@
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
-
-<ion-content class="bg-style">
-  <ion-label class="montant"><p class="b">Total montant : {{commande.montantCommande}}fcfa</p></ion-label>
-  <ion-list>
-    <ng-container *ngFor="let produit of commande">
-      <ng-container *ngIf="produit.burger">
-        <ion-item >
-          <ion-thumbnail item-left>            
-            <img src="data:image/png;base64,{{produit?.burger.image}}">
-          </ion-thumbnail>
-          <ion-label class="name" >
-            <b>{{produit.burger.nom}}</b><br>
-            <b>({{produit.quantite}})</b>
-            <b class="prix">{{produit.burger.prix}} fcfa</b>
-          </ion-label>
-        </ion-item>
+<ng-container *ngIf="commande == undefined">
+    <ion-content>
+      <app-loader></app-loader>
+    </ion-content>
+</ng-container>
+<ng-container *ngIf="commande != undefined">
+  <ion-content class="bg-style">
+    <ion-label class="montant"><p class="b">Total montant : {{montant}}fcfa</p></ion-label>
+    <ion-list>
+      <ng-container *ngFor="let produit of commande">
+        <ng-container *ngIf="produit.burger">
+          <ion-item >
+            <ion-thumbnail item-left>            
+              <img src="data:image/png;base64,{{produit?.burger.image}}">
+            </ion-thumbnail>
+            <ion-label class="name" >
+              <b>{{produit.burger.nom}}</b><br>
+              <b>({{produit.quantite}})</b>
+              <b class="prix">{{produit.burger.prix}} fcfa</b>
+            </ion-label>
+          </ion-item>
+        </ng-container>
+        <ng-container *ngIf="produit.menu">
+          <ion-item >
+            <ion-thumbnail item-left>            
+              <img src="data:image/png;base64,{{produit?.menu.image}}">
+            </ion-thumbnail>
+            <ion-label class="name">
+              <b>{{produit.menu.nom}}</b><br>
+              <b>({{produit.quantite}})</b>
+              <b class="prix">{{produit.menu.prix}} fcfa</b>
+            </ion-label>
+          </ion-item>
+        </ng-container>
+        <ng-container *ngIf="produit.boissonTailleBoisson">
+          <ion-item>
+            <ion-thumbnail item-left>            
+              <img src="/assets/boissons/{{produit.boissonTailleBoisson.boisson.id}}.png">
+            </ion-thumbnail>
+            <ion-label class="name">
+              <b>{{produit.boissonTailleBoisson.boisson.nom}}</b><br>
+              <b>({{produit.quantite}})</b>
+              <b class="prix">{{produit.boissonTailleBoisson.boisson.prix}} fcfa</b>
+            </ion-label>
+          </ion-item>
+        </ng-container>
+        <ng-container *ngIf="produit.portionFrite">
+          <ion-item >
+            <ion-thumbnail item-left>            
+              <img src="/assets/frites/{{produit.portionFrite.id}}.jpg">
+            </ion-thumbnail>
+            <ion-label class="name">
+              <b> {{produit.portionFrite.nom}}</b><br>
+              <b>({{produit.quantite}})</b>
+              <b class="prix">{{produit.portionFrite.prix}} fcfa</b>
+            </ion-label>
+          </ion-item>
+        </ng-container>
       </ng-container>
-      <ng-container *ngIf="produit.menu">
-        <ion-item >
-          <ion-thumbnail item-left>            
-            <img src="data:image/png;base64,{{produit?.menu.image}}">
-          </ion-thumbnail>
-          <ion-label class="name">
-            <b>{{produit.menu.nom}}</b><br>
-            <b>({{produit.quantite}})</b>
-            <b class="prix">{{produit.menu.prix}} fcfa</b>
-          </ion-label>
-        </ion-item>
-      </ng-container>
-      <ng-container *ngIf="produit.boissonTailleBoisson">
-        <ion-item>
-          <ion-thumbnail item-left>            
-            <img src="/assets/boissons/{{produit.boissonTailleBoisson.boisson.id}}.png">
-          </ion-thumbnail>
-          <ion-label class="name">
-            <b>{{produit.boissonTailleBoisson.boisson.nom}}</b><br>
-            <b>({{produit.quantite}})</b>
-            <b class="prix">{{produit.boissonTailleBoisson.boisson.prix}} fcfa</b>
-          </ion-label>
-        </ion-item>
-      </ng-container>
-      <ng-container *ngIf="produit.portionFrite">
-        <ion-item >
-          <ion-thumbnail item-left>            
-            <img src="/assets/frites/{{produit.portionFrite.id}}.jpg">
-          </ion-thumbnail>
-          <ion-label class="name">
-            <b> {{produit.portionFrite.nom}}</b><br>
-            <b>({{produit.quantite}})</b>
-            <b class="prix">{{produit.portionFrite.prix}} fcfa</b>
-          </ion-label>
-        </ion-item>
-      </ng-container>
-    </ng-container>
-  </ion-list>
-</ion-content>
+    </ion-list>
+  </ion-content>
+</ng-container>

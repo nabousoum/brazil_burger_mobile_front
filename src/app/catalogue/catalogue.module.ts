@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { CataloguePageRoutingModule } from './catalogue-routing.module';
 
 import { CataloguePage } from './catalogue.page';
+import { LoaderComponent } from '../loader/loader.component';
 
 @NgModule({
   imports: [
@@ -15,6 +16,9 @@ import { CataloguePage } from './catalogue.page';
     IonicModule,
     CataloguePageRoutingModule
   ],
-  declarations: [CataloguePage]
+  declarations: [
+    CataloguePage,
+    LoaderComponent
+  ]
 })
 export class CataloguePageModule {}

@@ -10,7 +10,7 @@
 
 <ng-container *ngIf="catalogues == undefined">
   <ion-content>
-    <div class="spinner-4"></div>
+    <app-loader></app-loader>
   </ion-content>
 </ng-container>
 <ng-container *ngIf="catalogues != undefined">
