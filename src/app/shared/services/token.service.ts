@@ -6,6 +6,7 @@ import { StorageService } from './storage.service';
 })
 export class TokenService {
 
+  data:any
   constructor(
     private storage : StorageService
   ) { }
@@ -15,7 +16,16 @@ export class TokenService {
   //   console.log("help"+token)
   //   return !! token
   // }
-  isLogged(token):boolean{
-    return !! false
+  isLogged():boolean{
+    let test:boolean
+    this.storage.getData('token') .then(
+      (result) => {
+        this.data = result
+       console.log("result "+result)
+       return result
+      }
+      )
+    console.log(" is logged "+this.data)
+    return test
   }
 }

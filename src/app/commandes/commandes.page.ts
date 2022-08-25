@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CommandeService } from '../shared/services/commande.service';
 
 @Component({
   selector: 'app-commandes',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CommandesPage implements OnInit {
 
-  constructor() { }
+  commandes :any[] = []
+  constructor(
+    private commandeServ: CommandeService
+  ) { }
 
   ngOnInit() {
+      this.commandeServ.commandeClient().subscribe(data=>{
+        console.log(data)
+      })
   }
 
 }

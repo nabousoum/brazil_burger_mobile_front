@@ -31,11 +31,11 @@ export class ConnexionPage implements OnInit {
   onSubmit(){
     this.authServ.login(this.form).subscribe(
       data=>{
-        this.storage.addData(data.token,data.id)
+        this.storage.addData(data.token,data.id).then(()=>{
+          window.location.reload();
+        });
         this.storage.bool.next(true);
-        //this.router.navigateByUrl('/catalogue',{ skipLocationChange: true })
-        //this.router.navigateByUrl('/catalogue')
-        this.router.navigate(['/catalogue'],{skipLocationChange:true});
+        this.router.navigateByUrl('/catalogue');
 
         console.log("get data "+ this.storage.getData('token'))
       },

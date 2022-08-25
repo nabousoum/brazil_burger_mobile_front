@@ -15,27 +15,34 @@ export class AppComponent {
   constructor(
     private router: Router,
     private tokenService: TokenService,
-    private storage: StorageService
+    private storage: StorageService,
+    private stor: Storage
   ) {
    
   }
 
   
-  isLogged:boolean
-  bool = this.storage.getBool().subscribe(
-    data=>{
-      this.isLogged = data;
-      console.log("boolean "+data);
-    }
-  )
-  // token = this.storage.getData('token').then((data)=>{
-  //   console.log("promesse "+data)
-  //   return data
-  // })
-  // isLogged:boolean = this.tokenService.isLogged(this.token)
+   isLogged:boolean
+  // bool = this.storage.getBool().subscribe(
+  //   data=>{
+  //     this.isLogged = data;
+  //     console.log("boolean "+data);
+  //   }
+  // )
+  token = this.storage.getData('token').then((data)=>{
+    if(data == null){
+      this.isLogged = false
+     }
+     else{
+      this.isLogged = true
+     }
+    console.log(this.isLogged);
+  })
+   //isLogged:boolean = this.tokenService.isLogged()
+   
 
-  //  logout(){
-  //    this.storage.clear()
-  //   this.router.navigate(['/catalogue'])
-  // }
+   logout(){
+     this.stor.clear()
+    this.router.navigateByUrl('/catalogue')
+  }
 }
