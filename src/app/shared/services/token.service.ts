@@ -1,21 +1,25 @@
 import { Injectable } from '@angular/core';
 import { StorageService } from './storage.service';
-
+import jwt_decode from "jwt-decode";
+import { Router } from '@angular/router';
 @Injectable({
   providedIn: 'root'
 })
 export class TokenService {
 
   data:any
+  token:any
   constructor(
-    private storage : StorageService
+    private storage : StorageService,
+    private router: Router
   ) { }
 
-  // isLogged():boolean{
-  //   const token = localStorage.getItem('token')
-  //   console.log("help"+token)
-  //   return !! token
-  // }
+  async saveToken(token: string,id:string) {
+      this.storage.addData(token,id).then(()=>{
+        window.location.reload();
+  });
+  
+ }
   isLogged():boolean{
     let test:boolean
     this.storage.getData('token') .then(

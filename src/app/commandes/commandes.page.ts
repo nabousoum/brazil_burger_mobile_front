@@ -29,12 +29,18 @@ export class CommandesPage implements OnInit {
      await this.storage.getData('token').then((data)=>{
       this.token = data})
     this.commandeServ.commandeClient(this.id,this.token).subscribe(data=>{
-      this.commandes = data
+      this.commandes = data.filter(commande=>commande.etat === "en cours")
     })
      
   }
   navigateTo(url) {
     this.router.navigateByUrl(url)
   }
-
+  async CommandetoEdit(id:any){
+    await this.storage.getData('token').then((data)=>{
+    this.token = data})
+    this.commandeServ.resetCommande(id,this.token) .subscribe();
+    location.reload()
+    this.router.navigate(['/commandes'])
+  } 
 }

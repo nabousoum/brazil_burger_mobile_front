@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { StorageService } from './storage.service';
@@ -46,10 +47,11 @@ export class CommandeService {
   }
 
   /* detail d une commande */
-  detailCommande(id:number){
+  detailCommande(id:number,token:any){
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json',
+        'Authorization': `Bearer ${token}`
       })
     };
     return this.http.get<any>((`${this.urlDetail}/${id}`),httpOptions)
@@ -60,5 +62,16 @@ export class CommandeService {
         return data
       }
       ))
+  }
+  /* annuler commande */
+  resetCommande (id:any,token:any):Observable<number>{
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization': `Bearer ${token}`
+      })
+    }
+    const body = {"etat": "annule"}
+    return this.http.put<number>(this.urlDetail+"/"+id,body,httpOptions);
   }
 }

@@ -31,6 +31,10 @@ const routes: Routes = [
     path: 'commandes',
     loadChildren: () => import('./commandes/commandes.module').then( m => m.CommandesPageModule)
   },
+  {
+    path: 'livreur',
+    loadChildren: () => import('./livreur/livreur.module').then( m => m.LivreurPageModule)
+  },
   
 ];
 

@@ -41,8 +41,9 @@ export class AppComponent {
    //isLogged:boolean = this.tokenService.isLogged()
    
 
-   logout(){
-    this.stor.clear()
-    this.router.navigateByUrl('/catalogue')
+   async logout(){
+    await this.stor.clear()
+    this.router.navigate(['/catalogue'])
+    location.reload()
   }
 }

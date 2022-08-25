@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage-angular';
 import { BehaviorSubject } from 'rxjs';
+import { Router } from '@angular/router';
 
 const STORAGE_KEY = 'token'
 
@@ -11,6 +12,7 @@ export class StorageService {
 
   constructor(
     private storage: Storage,
+    private router: Router
   ) {
     this.storage.create();
    }
