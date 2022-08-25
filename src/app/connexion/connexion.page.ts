@@ -42,15 +42,15 @@ export class ConnexionPage implements OnInit {
         // console.log("get data "+ this.storage.getData('token'))
         this.tokenServ.saveToken(data.token,data.id)
         //  this.storage.getData('token').then(data=>{
-        //   var tokenI:string  = data;
-        //   var decoded: any = jwt_decode(tokenI);
-        //   console.log(decoded.roles[0]);
-        //   if(decoded.roles[0] == ["ROLE_CLIENT"] ){
+          var tokenI:string  = data.token;
+          var decoded: any = jwt_decode(tokenI);
+          console.log(decoded.roles[0]);
+           if(decoded.roles[0] == ["ROLE_CLIENT"] ){
               this.router.navigate(['/catalogue'])
-        //   }
-        //   else{
-        //     this.router.navigate(['/livreur'])
-        //   }
+          }
+          else{
+            this.router.navigate(['/livreur'])
+          }
        
         // })
           
