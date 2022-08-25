@@ -29,9 +29,14 @@
     | commandeFilter:searchTerm
     | CommandeDateFilter:searchTermDate">
     <ion-item routerLink="/detail-commande/{{commande.id}}">
-      <ion-label >{{commande.id}}</ion-label>
-      <ion-label >{{commande.montantCommande}} fcfa</ion-label>
-      <ion-label ><ion-icon (click)='CommandetoEdit(commande.id)' color="danger" name="ban-outline"></ion-icon></ion-label>
+      <ion-label >
+       N° {{commande.numeroCommande}}
+      </ion-label>
+      <ng-container *ngIf="commande.etat == 'en cours'">
+        <ion-label >
+          <ion-icon (click)='CommandetoEdit(commande.id)' color="danger" name="ban-outline"></ion-icon>
+        </ion-label>
+      </ng-container>
     </ion-item>
   </ion-list>
 </ion-content>
