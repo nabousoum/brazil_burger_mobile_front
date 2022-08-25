@@ -8,10 +8,7 @@ const routes: Routes = [
     path: '',
     component: CommandesPage
   },
-  {
-    path: 'detail-commande/:id',
-    loadChildren: () => import('./detail-commande/detail-commande.module').then( m => m.DetailCommandePageModule)
-  }
+
 ];
 
 @NgModule({

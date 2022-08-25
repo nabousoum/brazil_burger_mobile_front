@@ -10,7 +10,7 @@ import { StorageService } from 'src/app/shared/services/storage.service';
 })
 export class DetailCommandePage implements OnInit {
 
-  commandes:any=null
+  commande:any=null
   private id :any = 0;
   token:any
 
@@ -22,12 +22,11 @@ export class DetailCommandePage implements OnInit {
 
   async ngOnInit() {
     this.id = this.route.snapshot.paramMap.get('id');
-    await this.storage.getData('token').then((data)=>{
-      this.token = data})
-     this.comServ.detailCommande(this.id,this.token).subscribe(data=>{
+    let token =  await this.storage.getData('token')
+     this.comServ.detailCommande(this.id,token).subscribe(data=>{
       console.log("id "+this.id)
-      console.log("detail "+data);
-      this.commandes = data
+      console.log("detail "+data.numeroCommande);
+      this.commande = data
      })
   }
 

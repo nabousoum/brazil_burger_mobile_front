@@ -29,7 +29,8 @@ export class CommandesPage implements OnInit {
      await this.storage.getData('token').then((data)=>{
       this.token = data})
     this.commandeServ.commandeClient(this.id,this.token).subscribe(data=>{
-      this.commandes = data.filter(commande=>commande.etat === "en cours")
+      this.commandes = data
+      //.filter(commande=>commande.etat === "en cours")
     })
      
   }
@@ -42,5 +43,9 @@ export class CommandesPage implements OnInit {
     this.commandeServ.resetCommande(id,this.token) .subscribe();
     location.reload()
     this.router.navigate(['/commandes'])
+  }
+  
+  segmentChanged(ev: any) {
+    console.log('Segment changed', ev);
   } 
 }

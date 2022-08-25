@@ -55,13 +55,7 @@ export class CommandeService {
       })
     };
     return this.http.get<any>((`${this.urlDetail}/${id}`),httpOptions)
-    .pipe(
-      map(data=>{
-        let test = data['hydra:member']
-        data = test
-        return data
-      }
-      ))
+   
   }
   /* annuler commande */
   resetCommande (id:any,token:any):Observable<number>{
