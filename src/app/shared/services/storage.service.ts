@@ -29,7 +29,7 @@ export class StorageService {
      await this.storage.set('id', id)
   }
 
-  removeItem(item){
-    this.storage.remove(item)
+  clearAll(){
+    this.storage.clear()
   }
 }

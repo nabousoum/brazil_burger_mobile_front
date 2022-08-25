@@ -11,27 +11,29 @@ const apiUrl = environment.apiUrl
 })
 export class CommandeService {
   data:any
-  private urlCommande:string = `${apiUrl}/commandes`
+  private urlCommande:string = `${apiUrl}/clients`
+  private urlDetail:string = `${apiUrl}/commandes`
 
   constructor(
     private http:HttpClient,
     private storage: StorageService
   ) { }
-  commandeClient(){
+
+  /* les commandes d un client */
+  commandeClient(id:any){
     this.storage.getData('token').then(
       (result) => {
         this.data = result
        console.log("result commande"+this.data)
        return this.data
         }
-      )
+    )
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json',
-        'Authorization': `Bearer ${this.data}`
       })
     };
-    return this.http.get<any>(this.urlCommande,httpOptions)
+    return this.http.get<any>((`${this.urlCommande}/${id}/commandes`),httpOptions)
     .pipe(
       map(data=>{
         let test = data['hydra:member']
@@ -40,5 +42,22 @@ export class CommandeService {
       }
       )
     )
+  }
+
+  /* detail d une commande */
+  detailCommande(id:number){
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+      })
+    };
+    return this.http.get<any>((`${this.urlDetail}/${id}`),httpOptions)
+    .pipe(
+      map(data=>{
+        let test = data['hydra:member']
+        data = test
+        return data
+      }
+      ))
   }
 }

@@ -9,10 +9,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { IonicStorageModule } from '@ionic/storage-angular';
 import { Drivers } from '@ionic/storage';
+import { CommandeDateFilter, CommandeFilter } from './shared/services/commande-filter.pipe';
 
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [
+    AppComponent,
+  
+  ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),

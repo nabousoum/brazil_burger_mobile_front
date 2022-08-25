@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { CommandesPageRoutingModule } from './commandes-routing.module';
 
 import { CommandesPage } from './commandes.page';
+import { CommandeDateFilter, CommandeFilter } from '../shared/services/commande-filter.pipe';
 
 @NgModule({
   imports: [
@@ -15,6 +16,10 @@ import { CommandesPage } from './commandes.page';
     IonicModule,
     CommandesPageRoutingModule
   ],
-  declarations: [CommandesPage]
+  declarations: [
+    CommandesPage,
+    CommandeFilter,
+    CommandeDateFilter
+  ]
 })
 export class CommandesPageModule {}

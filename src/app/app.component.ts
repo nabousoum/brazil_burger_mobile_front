@@ -42,7 +42,7 @@ export class AppComponent {
    
 
    logout(){
-     this.stor.clear()
+    this.stor.clear()
     this.router.navigateByUrl('/catalogue')
   }
 }

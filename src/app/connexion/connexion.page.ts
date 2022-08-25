@@ -50,7 +50,8 @@ export class ConnexionPage implements OnInit {
   async presentToast() {
     const toast = await this.toastController.create({
       message: 'Connexion reussie',
-      duration: 2000
+      duration: 2000,
+      color:"success"
     });
     toast.present();
   }

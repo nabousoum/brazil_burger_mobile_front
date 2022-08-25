@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommandeService } from '../shared/services/commande.service';
+import { StorageService } from '../shared/services/storage.service';
 
 @Component({
   selector: 'app-commandes',
@@ -8,15 +9,26 @@ import { CommandeService } from '../shared/services/commande.service';
 })
 export class CommandesPage implements OnInit {
 
+  id:any
   commandes :any[] = []
+
+  searchTerm:any
+  searchTermDate:any
+  
   constructor(
-    private commandeServ: CommandeService
+    private commandeServ: CommandeService,
+    private storage: StorageService
   ) { }
 
   ngOnInit() {
-      this.commandeServ.commandeClient().subscribe(data=>{
-        console.log(data)
-      })
+   this.storage.getData('id').then((data)=>{
+     this.id = data
+     this.commandeServ.commandeClient(this.id).subscribe(data=>{
+      this.commandes = data.filter(commande => commande.etat == "en cours")
+      //console.log(data)
+    })
+    })
+     
   }
 
 }
