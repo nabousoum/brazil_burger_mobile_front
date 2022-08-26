@@ -30,5 +30,15 @@ export class LivreurPage implements OnInit {
     )
     
   }
+/* slides */
+slideOpts = {
+  initialSlide: 1,
+  speed: 100,
+  loop:true,
+  parallax: true,
+  autoplay:{
+    delay: 3000
 
+  }
+};
 }

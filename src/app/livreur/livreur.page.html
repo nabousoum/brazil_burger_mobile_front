@@ -10,7 +10,19 @@
 </ng-container>
 <ng-container  *ngIf="livraisons != undefined" >
   <ion-content>
+    <ion-slides pager="true" [options]="slideOpts">
+      <ion-slide>
+        <img src="assets/livreur1.webp" >
+      </ion-slide>
+      <ion-slide>
+        <img src="assets/livreur2.webp" >
+      </ion-slide>
+    </ion-slides>
+  
     <ion-list *ngFor="let livraison of livraisons">
+      <ion-item>
+        <b class="title write">Liste des livraisons</b>
+      </ion-item>
     <ion-item >
       <ion-label >
         <b> {{livraison.id}}</b>
