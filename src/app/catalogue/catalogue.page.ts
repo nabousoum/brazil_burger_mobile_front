@@ -27,6 +27,7 @@ export class CataloguePage implements OnInit {
     initialSlide: 1,
     speed: 100,
     loop:true,
+    parallax: true,
     autoplay:{
       delay: 3000
 

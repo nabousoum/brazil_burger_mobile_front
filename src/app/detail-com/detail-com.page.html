@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="catalogue"></ion-back-button>
+      <ion-back-button defaultHref="commandes"></ion-back-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -22,7 +22,7 @@
             </ion-thumbnail>
             <ion-label class="name" >
               <b>{{produit.burger.nom}}</b><br>
-              <b>({{produit.quantite}})</b>
+              <b class="write">( x{{produit.quantite}})</b>
               <b class="prix">{{produit.burger.prix}} fcfa</b>
             </ion-label>
           </ion-item>
@@ -34,7 +34,7 @@
             </ion-thumbnail>
             <ion-label class="name">
               <b>{{produit.menu.nom}}</b><br>
-              <b>({{produit.quantite}})</b>
+              <b class="write">( x{{produit.quantite}})</b>
               <b class="prix">{{produit.menu.prix}} fcfa</b>
             </ion-label>
           </ion-item>
@@ -46,7 +46,7 @@
             </ion-thumbnail>
             <ion-label class="name">
               <b>{{produit.boissonTailleBoisson.boisson.nom}}</b><br>
-              <b>({{produit.quantite}})</b>
+              <b class="write">( x{{produit.quantite}})</b>
               <b class="prix">{{produit.boissonTailleBoisson.boisson.prix}} fcfa</b>
             </ion-label>
           </ion-item>
@@ -58,7 +58,7 @@
             </ion-thumbnail>
             <ion-label class="name">
               <b> {{produit.portionFrite.nom}}</b><br>
-              <b>({{produit.quantite}})</b>
+              <b class="write">( x{{produit.quantite}})</b>
               <b class="prix">{{produit.portionFrite.prix}} fcfa</b>
             </ion-label>
           </ion-item>

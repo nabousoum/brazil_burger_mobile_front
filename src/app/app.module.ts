@@ -10,6 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { IonicStorageModule } from '@ionic/storage-angular';
 import { Drivers } from '@ionic/storage';
 import { CommandeDateFilter, CommandeFilter } from './shared/services/commande-filter.pipe';
+import { IonicHeaderParallaxModule } from 'ionic-header-parallax';
 
 
 @NgModule({
@@ -26,8 +27,8 @@ import { CommandeDateFilter, CommandeFilter } from './shared/services/commande-f
     IonicStorageModule.forRoot({
       name: 'brazil-front',
       // driverOrder: [Drivers.IndexedDB]
-    })
-    
+    }),
+    IonicHeaderParallaxModule,
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],

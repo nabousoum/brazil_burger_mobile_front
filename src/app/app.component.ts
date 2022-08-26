@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { TokenService } from './shared/services/token.service';
 import { Storage } from '@ionic/storage-angular';
 import { StorageService } from './shared/services/storage.service';
+import jwt_decode from "jwt-decode";
 
 @Component({
   selector: 'app-root',
@@ -22,25 +23,29 @@ export class AppComponent {
   }
 
   
-   isLogged:boolean
-  // bool = this.storage.getBool().subscribe(
-  //   data=>{
-  //     this.isLogged = data;
-  //     console.log("boolean "+data);
-  //   }
-  // )
+  isLogged:boolean
+  role:string
   token = this.storage.getData('token').then((data)=>{
-    if(data == null){
-      this.isLogged = false
-     }
-     else{
-      this.isLogged = true
-     }
-    console.log(this.isLogged);
+      if(data == null){
+        this.isLogged = false
+      }
+      else {
+        this.isLogged = true
+      }
+      console.log(this.isLogged);
   })
-   //isLogged:boolean = this.tokenService.isLogged()
-   
-
+  token2 = this.storage.getData('token').then((data) => {
+      var tokenI:string  = data;
+      var decoded: any = jwt_decode(tokenI);
+      if(decoded.roles[0] == ["ROLE_CLIENT"] ){
+          this.role = "client"
+      }
+       if(decoded.roles[0] == ["ROLE_LIVREUR"]){
+        this.role = "livreur"
+      }
+  })
+  
+ 
    async logout(){
     await this.stor.clear()
     this.router.navigate(['/catalogue'])

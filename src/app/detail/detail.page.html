@@ -14,7 +14,7 @@
   <ion-content>
     <ng-container *ngIf="(produit|async)?.menu?.type == 'menu'">
       <h2>{{(produit|async)?.menu?.nom}}</h2>
-      <img src="data:image/png;base64,{{(produit|async)?.menu?.image}}" alt="...">
+      <img parallax src="data:image/png;base64,{{(produit|async)?.menu?.image}}" alt="...">
       <p class="prix">  <ion-icon class="all" name="pricetags-outline"></ion-icon>{{(produit|async)?.menu?.prix}} FCFA</p>
     </ng-container>  
     <ng-container *ngIf="(produit|async)?.burger?.type == 'burger'">

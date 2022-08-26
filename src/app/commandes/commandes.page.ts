@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 import { CommandeService } from '../shared/services/commande.service';
 import { StorageService } from '../shared/services/storage.service';
 
@@ -14,13 +15,15 @@ export class CommandesPage implements OnInit {
   token :any
   commandes :any[] = []
 
-  searchTerm:any
+  searchTerm = "en cours"
   searchTermDate:any
+  //new Date().toLocaleDateString()
   
   constructor(
     private commandeServ: CommandeService,
     private storage: StorageService,
-    private router: Router
+    private router: Router,
+    private alertController: AlertController
   ) { }
 
  async ngOnInit() {

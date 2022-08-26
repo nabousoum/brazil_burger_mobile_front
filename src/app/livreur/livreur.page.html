@@ -3,7 +3,26 @@
     <ion-title>livreur</ion-title>
   </ion-toolbar>
 </ion-header>
+<ng-container *ngIf="livraisons == undefined">
+    <ion-content>
+      <app-loader></app-loader>
+    </ion-content>
+</ng-container>
+<ng-container  *ngIf="livraisons != undefined" >
+  <ion-content>
+    <ion-list *ngFor="let livraison of livraisons">
+    <ion-item >
+      <ion-label >
+        <b> {{livraison.id}}</b>
+      </ion-label>
+      <ion-label >
+       <b>{{livraison.montantTotal}}</b>
+      </ion-label>
+      <ion-label >
+       <b> {{livraison.etat}}</b>
+       </ion-label>
+    </ion-item>
+  </ion-list>
+  </ion-content>
+</ng-container>
 
-<ion-content>
-    hello livreur
-</ion-content>
