@@ -6,13 +6,15 @@ import { IonicModule } from '@ionic/angular';
 import { LivreurPageRoutingModule } from './livreur-routing.module';
 import { LivreurPage } from './livreur.page';
 import { LoaderComponent } from '../loader/loader.component';
+import { IonicHeaderParallaxModule } from 'ionic-header-parallax';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    LivreurPageRoutingModule
+    LivreurPageRoutingModule,
+    IonicHeaderParallaxModule,
   ],
   declarations: [
     LivreurPage,

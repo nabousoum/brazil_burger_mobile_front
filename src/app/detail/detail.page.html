@@ -1,4 +1,9 @@
-<ion-header>
+<ion-header
+  parallax
+  imageUrl="assets/burgerCard.jpg"
+  height="100"
+  bgPosition="top"
+>
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-back-button defaultHref="catalogue"></ion-back-button>
@@ -11,10 +16,10 @@
   </ion-content>
 </ng-container>
 <ng-container *ngIf="(produit|async) != null">
-  <ion-content>
+  <ion-content >
     <ng-container *ngIf="(produit|async)?.menu?.type == 'menu'">
       <h2>{{(produit|async)?.menu?.nom}}</h2>
-      <img parallax src="data:image/png;base64,{{(produit|async)?.menu?.image}}" alt="...">
+      <img  src="data:image/png;base64,{{(produit|async)?.menu?.image}}" alt="...">
       <p class="prix">  <ion-icon class="all" name="pricetags-outline"></ion-icon>{{(produit|async)?.menu?.prix}} FCFA</p>
     </ng-container>  
     <ng-container *ngIf="(produit|async)?.burger?.type == 'burger'">
@@ -26,6 +31,7 @@
       <p class="description">
           {{(produit|async)?.burger?.description}}
       </p>
+      
     </ng-container>
     <ng-container *ngIf="(produit|async)?.menu?.type == 'menu'">
       <p  class="description">

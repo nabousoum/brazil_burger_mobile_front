@@ -7,20 +7,20 @@ const apiUrl = environment.apiUrl
   providedIn: 'root'
 })
 export class LivraisonService {
-  private urlLivraison:string = `${apiUrl}/livreurs`
+  private urlLivraison:string = `${apiUrl}/livraisons`
 
   constructor(
     private http:HttpClient
   ) { }
   /* livraisons d un livreur */
-  livraisonByLivreur(id:any,token:any){
+  livraisonByLivreur(token:any){
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json',
         'Authorization': `Bearer ${token}`
       })
     };
-    return this.http.get<any>(`${this.urlLivraison}/${id}/livraisons`,httpOptions)
+    return this.http.get<any>(this.urlLivraison,httpOptions)
     .pipe(
       map(data=>{
         let test = data['hydra:member']

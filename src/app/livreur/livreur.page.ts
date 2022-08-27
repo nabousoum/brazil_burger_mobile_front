@@ -23,9 +23,11 @@ export class LivreurPage implements OnInit {
       this.id = data})
     await this.storage.getData('token').then((data)=>{
       this.token = data})
-    this.livraisonServ.livraisonByLivreur(this.id,this.token).subscribe(
+    this.livraisonServ.livraisonByLivreur(this.token).subscribe(
       data=>{
-        this.livraisons = data
+        console.log(data);
+        console.log(this.id);
+        this.livraisons = data.filter(livraison=>livraison.livreur.id === this.id)
       }
     )
     
