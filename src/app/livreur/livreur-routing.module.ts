@@ -7,6 +7,10 @@ const routes: Routes = [
   {
     path: '',
     component: LivreurPage
+  },
+  {
+    path: 'qr-code/:id',
+    loadChildren: () => import('./qr-code/qr-code.module').then( m => m.QrCodePageModule)
   }
 ];
 

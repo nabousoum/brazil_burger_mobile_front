@@ -1,8 +1,5 @@
 <ion-header
-parallax
-  imageUrl="assets/logo.bin"
-  height="300"
-  bgPosition="top"
+
 >
   <ion-toolbar>
     <ion-title>livreur</ion-title>
@@ -20,7 +17,7 @@ parallax
         <img  src="assets/livreur1.webp" >
       </ion-slide>
       <ion-slide>
-        <img  src="assets/livreur2.webp" >
+        <img src="assets/livreur2.webp" >
       </ion-slide>
     </ion-slides>
     <ion-item>
@@ -30,10 +27,16 @@ parallax
       <ng-container *ngFor="let commande of livraison.commandes">
     <ion-item >
         <ion-label>
-          <b>{{commande.client.prenom}} {{commande.client.nom}} - {{commande.zone.libelle}} ({{commande.zone.prix}} fcfa) </b><br>
-          <p  class="write">Total : {{commande.montantCommande}} fcfa</p>
+          <b>
+            {{commande.client.prenom}} {{commande.client.nom}} - {{commande.zone.libelle}} 
+          </b>
+          <ion-button routerLink="qr-code/{{commande.id}}" class="all qr-code">
+            <ion-icon  name="qr-code-outline"></ion-icon>
+          </ion-button>
+          <br>
+          <p  class="write">Total : {{commande.montantCommande}} fcfa - {{commande.client.telephone}}</p>
         </ion-label>
-       
+      
     </ion-item>
   </ng-container>
   </ion-list>

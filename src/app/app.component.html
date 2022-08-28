@@ -24,7 +24,7 @@
         </ng-container>
         <ng-container *ngIf="isLogged == true">
           <ion-item (click)="logout()" >
-            <ion-icon name="person-outline"></ion-icon>
+            <ion-icon name="exit-outline"></ion-icon>
             <ion-label>Deconnexion</ion-label>
           </ion-item>
         </ng-container>
@@ -49,7 +49,7 @@
       </ng-container>
       <ng-container *ngIf="isLogged == true" >
         <ion-tab-button   (click)="logout()">
-          <ion-icon name="person-outline"></ion-icon>
+          <ion-icon name="exit-outline"></ion-icon>
            <ion-label>Deconnexion</ion-label>
          </ion-tab-button>
       </ng-container>
@@ -59,23 +59,32 @@
           <ion-label>Mes commandes</ion-label>
         </ion-tab-button>
       </ng-container>
-      
-    <ion-tab-button *ngIf="role == 'client'"  tab="about">
-      <ion-icon name="cart-outline"></ion-icon>
-      <ion-label>Panier</ion-label>
-    </ion-tab-button>
 
     <ion-tab-button *ngIf="role == 'client'"  tab="catalogue">
       <ion-icon name="list-circle-outline"></ion-icon>
       <ion-label>Catalogue</ion-label>
     </ion-tab-button>
 
+    <ng-container *ngIf="isLogged == true">
+      <ion-tab-button *ngIf="role == 'client'"  tab="about">
+        <ion-icon name="qr-code-outline"></ion-icon>
+      </ion-tab-button>
+    </ng-container >
+
     <ng-container  *ngIf="isLogged == true" >
       <ion-tab-button *ngIf="role == 'livreur'"  tab="livreur">
-        <ion-icon name="car-outline"></ion-icon>
+        <ion-icon name="list-circle-outline"></ion-icon>
         <ion-label>livraisons</ion-label>
       </ion-tab-button>
     </ng-container>
+
+    <!-- <ng-container  *ngIf="isLogged == true">
+      <ion-tab-button routerLink="livreur/qr-code" *ngIf="role == 'livreur'"  tab="">
+        <ion-icon name="qr-code-outline"></ion-icon>
+        <ion-label>scan</ion-label>
+      </ion-tab-button>
+    </ng-container> -->
+
     </ion-tab-bar>
   </ion-tabs>
  
