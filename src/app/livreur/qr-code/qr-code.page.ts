@@ -10,7 +10,7 @@ import { StorageService } from 'src/app/shared/services/storage.service';
 })
 export class QrCodePage implements OnInit {
 
-  dataQrCode:any ="test qr code"
+  dataQrCode:string
   id:any
   token:any
 
@@ -24,7 +24,7 @@ export class QrCodePage implements OnInit {
     this.id = this.route.snapshot.paramMap.get('id');
     let token =  await this.storage.getData('token')
      this.comServ.detailCommande(this.id,token).subscribe(data=>{
-      this.dataQrCode = data
+      this.dataQrCode = "id commande: "+data.id+" id client: "+data.client.id
      })
   }
 
