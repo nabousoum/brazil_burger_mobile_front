@@ -25,7 +25,9 @@
               <ng-container *ngIf="item?.menu?.type == 'menu'" >
                 <b class="title">{{item?.menu?.nom}}</b><br>
               </ng-container>
-              <b class="write">( xqte)</b>
+            
+                <b class="write">( x{{item?.quantite}})</b>
+             
               <ng-container *ngIf="item?.burger?.type == 'burger'">
                 <b class="text">{{item?.burger?.prix}} fcfa</b>
               </ng-container>

@@ -16,6 +16,7 @@ export class DetailPage implements OnInit {
   produit  : Observable<Detail> | null = null;
   private id :any = 0;
   private type:any =""
+  qte:number = 0
 
   constructor(
     private catalogueServ:CatalogueService,
@@ -29,19 +30,27 @@ export class DetailPage implements OnInit {
     this.produit = this.catalogueServ.produit(this.id);
       
   }
+  /* */
+  dec() { this.resize(-1); }
+  inc() { this.resize(+1); }
+
+  resize(delta: number) {
+    this.qte = Math.min(40, Math.max(1, +this.qte + delta));
+  
+  }
 
   /* add to cart */
   addToCart(detail:Detail){
       if(detail.burger){
         let burger:BurgerCommande = {
-          quantite:1,
+          quantite:this.qte,
           burger:detail.burger
         }
         this.cartServ.addBurger(burger)
       }
       if (detail.menu){ 
         let menu:MenuCommande = {
-          quantite:1,
+          quantite:this.qte,
           menu:{
             id:Number(detail.menu.id),
             nom: detail.menu.nom,

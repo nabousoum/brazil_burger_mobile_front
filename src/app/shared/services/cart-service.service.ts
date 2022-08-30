@@ -6,7 +6,7 @@ import { StorageService } from './storage.service';
 @Injectable({
   providedIn: 'root'
 })
-export class CartServiceService{
+export class CartServiceService implements OnInit{
   private panier : Panier = {
     burgerCommandes: [],
     menuCommandes: [],
@@ -17,9 +17,20 @@ export class CartServiceService{
   test:any
   constructor(private storage :StorageService) {
     const ls =  this.storage.getData('cart').then(data=>{
-      this.newCart.next(data)
+      if(data){
+        this.newCart.next(data)
+      }
+     
     })
-   
+   }
+
+   ngOnInit(): void {
+    // const ls =  this.storage.getData('cart').then(data=>{
+    //   if(ls){
+    //     this.newCart.next(data)
+    //   }
+     
+    // })
    }
 
   /* add burger commande */

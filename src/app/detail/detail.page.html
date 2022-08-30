@@ -38,17 +38,18 @@ bgPosition="top" -->
       </p>
     </ng-container>
      <!-- Quantity -->
+     
      <div class="d-flex mb-4" class="qte">
-      <ion-button class="btn size"
+      <ion-button class="btn size" (click)="dec()"
         onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
         <ion-icon name="remove-outline"></ion-icon>
       </ion-button>
   
       <div class="form-outline">
-        <input id="form1" min="0" name="quantity" value="1" type="number" class="form-control" />
+        <input [(ngModel)]="qte" id="form1" min="0" name="quantity" value="1" type="number" class="form-control" />
       </div>
   
-      <ion-button  class="btn size"
+      <ion-button  class="btn size" (click)="inc()" 
         onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
         <ion-icon name="add-outline"></ion-icon>
       </ion-button>
