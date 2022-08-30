@@ -30,7 +30,9 @@ export class StorageService {
      await  this.storage.set('token', item)
      await this.storage.set('id', id)
   }
-
+  async saveData(key,item){
+    await  this.storage.set(key, item)
+  }
   clearAll(){
     this.storage.clear()
   }
