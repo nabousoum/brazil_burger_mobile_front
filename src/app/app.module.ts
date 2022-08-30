@@ -10,7 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { IonicStorageModule } from '@ionic/storage-angular';
 import { Drivers } from '@ionic/storage';
 import { CommandeDateFilter, CommandeFilter } from './shared/services/commande-filter.pipe';
-
+import { QRScanner } from '@ionic-native/qr-scanner/ngx';
 
 
 @NgModule({
@@ -28,9 +28,11 @@ import { CommandeDateFilter, CommandeFilter } from './shared/services/commande-f
       name: 'brazil-front',
       // driverOrder: [Drivers.IndexedDB]
     }),
-
+    
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [
+    QRScanner,
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

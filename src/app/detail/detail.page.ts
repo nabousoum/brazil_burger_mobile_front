@@ -5,6 +5,7 @@ import { CatalogueService } from '../shared/services/catalogue.service';
 import { Observable } from 'rxjs';
 import { BurgerCommande, MenuCommande } from '../shared/models/panier';
 import { CartServiceService } from '../shared/services/cart-service.service';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-detail',
@@ -16,12 +17,14 @@ export class DetailPage implements OnInit {
   produit  : Observable<Detail> | null = null;
   private id :any = 0;
   private type:any =""
-  qte:number = 0
+  qte:number = 1
 
   constructor(
     private catalogueServ:CatalogueService,
     private route: ActivatedRoute,
     private cartServ: CartServiceService,
+    public toastController: ToastController,
+
   ) { }
 
   ngOnInit() {
@@ -64,6 +67,15 @@ export class DetailPage implements OnInit {
   
       }
   }
+    /* toast */
+    async presentToast() {
+      const toast = await this.toastController.create({
+        message: 'Connexion reussie',
+        duration: 2000,
+        color:"success"
+      });
+      toast.present();
+    }
 
 }
 

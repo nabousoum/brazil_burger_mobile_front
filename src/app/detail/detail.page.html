@@ -46,7 +46,7 @@ bgPosition="top" -->
       </ion-button>
   
       <div class="form-outline">
-        <input [(ngModel)]="qte" id="form1" min="0" name="quantity" value="1" type="number" class="form-control" />
+        <input [(ngModel)]="qte" id="form1" min="1" name="quantity" value={{qte}} type="number" class="form-control" />
       </div>
   
       <ion-button  class="btn size" (click)="inc()" 
