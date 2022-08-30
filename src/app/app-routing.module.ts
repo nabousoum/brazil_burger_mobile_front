@@ -39,6 +39,10 @@ const routes: Routes = [
   {
     path: 'detail-com/:id',
     loadChildren: () => import('./detail-com/detail-com.module').then( m => m.DetailComPageModule)
+  },
+  {
+    path: 'panier',
+    loadChildren: () => import('./panier/panier.module').then( m => m.PanierPageModule)
   }
   
 ];

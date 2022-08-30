@@ -24,7 +24,7 @@ export class QrCodePage implements OnInit {
     this.id = this.route.snapshot.paramMap.get('id');
     let token =  await this.storage.getData('token')
      this.comServ.detailCommande(this.id,token).subscribe(data=>{
-      this.dataQrCode = "id commande: "+data.id+" id client: "+data.client.id
+      this.dataQrCode = "idClient "+data.client.id
      })
   }
 

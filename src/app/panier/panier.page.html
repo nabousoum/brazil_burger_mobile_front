@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button class="write" defaultHref="catalogue"></ion-back-button>
+    </ion-buttons>
+    <ion-title>panier</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-list>
+    <ion-card *ngFor="let item of items">
+      <ion-card-content>
+        <ion-row class="ion-align-items-center">
+          <ion-col size="8">
+            <ion-label class="name">
+              <ng-container *ngIf="item?.burger?.type == 'burger'">
+                <img src="data:image/png;base64,{{item?.burger?.image}}">
+              </ng-container>
+              <ng-container *ngIf="item?.menu?.type == 'menu'" >
+                <img src="data:image/png;base64,{{item?.menu?.image}}">
+              </ng-container>
+              <ng-container *ngIf="item?.burger?.type == 'burger'">
+                <b class="title">{{item?.burger?.nom}}</b><br>
+              </ng-container>
+              <ng-container *ngIf="item?.menu?.type == 'menu'" >
+                <b class="title">{{item?.menu?.nom}}</b><br>
+              </ng-container>
+              <b class="write">( xqte)</b>
+              <ng-container *ngIf="item?.burger?.type == 'burger'">
+                <b class="text">{{item?.burger?.prix}} fcfa</b>
+              </ng-container>
+              <ng-container *ngIf="item?.menu?.type == 'menu'" >
+                <b class="text">{{item?.menu?.prix}} fcfa</b>
+              </ng-container>
+            </ion-label>
+          </ion-col>
+          <ion-col size="4" class="ion-text-right">
+            <ion-button fill="clear" >
+              <ion-icon color="danger" name="trash"></ion-icon>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
+</ion-content>

@@ -12,9 +12,10 @@
           <ion-icon name="list-circle-outline"></ion-icon>
           <ion-label>Catalogue</ion-label>
         </ion-item>
-        <ion-item>
+        <ion-item routerLink="panier">
           <ion-icon name="cart-outline"></ion-icon>
           <ion-label>Panier</ion-label>
+          <ion-badge color="warning">{{itemIncCart}}</ion-badge>
         </ion-item>
         <ng-container *ngIf="isLogged == true">
           <ion-item routerLink="commandes">
@@ -23,7 +24,7 @@
           </ion-item>
         </ng-container>
         <ng-container *ngIf="isLogged == true">
-          <ion-item (click)="logout()" >
+          <ion-item (click)="logout()">
             <ion-icon name="exit-outline"></ion-icon>
             <ion-label>Deconnexion</ion-label>
           </ion-item>
@@ -41,18 +42,18 @@
   <ion-tabs>
     <ion-tab-bar slot="bottom">
 
-      <ng-container *ngIf="isLogged == false" >
+      <ng-container *ngIf="isLogged == false">
         <ion-tab-button  tab="connexion">
           <ion-icon name="person-outline"></ion-icon>
            <ion-label>Connexion</ion-label>
          </ion-tab-button>
       </ng-container>
-      <ng-container *ngIf="isLogged == true" >
+      <!-- <ng-container *ngIf="isLogged == true" >
         <ion-tab-button   (click)="logout()">
           <ion-icon name="exit-outline"></ion-icon>
            <ion-label>Deconnexion</ion-label>
          </ion-tab-button>
-      </ng-container>
+      </ng-container> -->
       <ng-container *ngIf="isLogged == true">
         <ion-tab-button   *ngIf="role == 'client'"  tab="commandes">
           <ion-icon name="newspaper-outline"></ion-icon>
@@ -68,10 +69,17 @@
     <ng-container *ngIf="isLogged == true">
       <ion-tab-button *ngIf="role == 'client'"  tab="about">
         <ion-icon name="qr-code-outline"></ion-icon>
+        <ion-label>Scan</ion-label>
       </ion-tab-button>
     </ng-container >
 
-    <ng-container  *ngIf="isLogged == true" >
+    <ion-tab-button *ngIf="role == 'client'"  tab="panier">
+      <ion-icon name="cart-outline"></ion-icon>
+      <ion-label>Panier</ion-label>
+      <ion-badge color="warning">{{itemIncCart}}</ion-badge>
+    </ion-tab-button>
+
+    <ng-container  *ngIf="isLogged == true">
       <ion-tab-button *ngIf="role == 'livreur'"  tab="livreur">
         <ion-icon name="list-circle-outline"></ion-icon>
         <ion-label>livraisons</ion-label>

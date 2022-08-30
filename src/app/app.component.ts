@@ -4,6 +4,7 @@ import { TokenService } from './shared/services/token.service';
 import { Storage } from '@ionic/storage-angular';
 import { StorageService } from './shared/services/storage.service';
 import jwt_decode from "jwt-decode";
+import { CartServiceService } from './shared/services/cart-service.service';
 
 @Component({
   selector: 'app-root',
@@ -12,19 +13,21 @@ import jwt_decode from "jwt-decode";
 })
 export class AppComponent {
 
+  itemIncCart:number = 0
+  countPanier:number = 0
+  isLogged:boolean
+  role:string
 
   constructor(
     private router: Router,
     private tokenService: TokenService,
     private storage: StorageService,
-    private stor: Storage
-  ) {
-   
-  }
+    private stor: Storage,
+    private cartService:CartServiceService,
+  ) {}
 
-  
-  isLogged:boolean
-  role:string
+
+  /*fonction pour test if connected*/
   token = this.storage.getData('token').then((data)=>{
       if(data == null){
         this.isLogged = false
@@ -34,6 +37,7 @@ export class AppComponent {
       }
       console.log(this.isLogged);
   })
+  /* fonction pour roles */
   token2 = this.storage.getData('token').then((data) => {
       var tokenI:string  = data;
       var decoded: any = jwt_decode(tokenI);
@@ -45,10 +49,19 @@ export class AppComponent {
       }
   })
   
- 
+  /* fonction deconnexion */
    async logout(){
     await this.stor.clear()
     this.router.navigate(['/catalogue'])
     location.reload()
   }
+
+  /* cart */
+  cart = this.cartService.newCart.subscribe(d=>{
+    if( d.burgerCommandes && d.menuCommandes){
+      this.countPanier = d.burgerCommandes.length + d.menuCommandes.length
+    }
+    this.itemIncCart = this.countPanier
+  })
+
 }
