@@ -15,6 +15,7 @@ export class ScanPage implements OnInit {
   //qrResult: Result;
   qrResultString: string;
   token:any
+  id:any
 
   constructor(
     private qrScanner: QRScanner,
@@ -54,15 +55,20 @@ export class ScanPage implements OnInit {
  async handleQrCodeResult(resultString: any) {
     resultString = JSON.parse(resultString);
     let idCom = resultString.idCommande
+    let idClient = resultString.idClient
     alert(idCom)
     console.log('Result: ', resultString);
-    await this.storage.getData('token').then((data)=>{
-      this.token = data})
-    this.comServ.validerCommande(idCom,this.token).subscribe(
-      err=>{
-        console.log(err);
-      }
-    )
+    await this.storage.getData('id').then((data)=>{
+      this.id = data})
+    if(idClient == this.id){
+      await this.storage.getData('token').then((data)=>{
+        this.token = data})
+        this.comServ.validerCommande(idCom,this.token).subscribe(
+          err=>{
+            console.log(err);
+          }
+        )
+    }
     this.qrResultString = resultString;
   }
 

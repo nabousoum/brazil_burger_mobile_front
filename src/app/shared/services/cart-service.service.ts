@@ -91,4 +91,19 @@ export class CartServiceService implements OnInit{
     
   }
 
+   /* montant total panier */
+   getTotalPrice(){
+    let grandTotal = 0
+    this.newCart.value.menuCommandes?.map(menuCom=>{
+      if(menuCom?.menu?.prix)
+      grandTotal += Number( menuCom?.menu?.prix * menuCom.quantite)
+    })
+    this.newCart.value.burgerCommandes?.map(burgerCommande=>{
+      if(burgerCommande.burger?.prix)
+      grandTotal += Number( burgerCommande?.burger?.prix * burgerCommande.quantite)
+    })
+    return grandTotal
+  }
+
+
 }

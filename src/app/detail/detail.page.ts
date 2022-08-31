@@ -42,6 +42,16 @@ export class DetailPage implements OnInit {
   
   }
 
+  getPrixMenu(data:any){
+    let prix = data.menu.prix * (this.qte)
+    return prix
+  }
+  getPrixBurger(data:any){
+    let prix = data.burger.prix * (this.qte)
+    return prix
+  }
+
+
   /* add to cart */
   addToCart(detail:Detail){
       if(detail.burger){
