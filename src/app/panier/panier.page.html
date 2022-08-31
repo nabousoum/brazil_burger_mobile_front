@@ -11,10 +11,10 @@
     <ion-card *ngFor="let item of items">
       <ion-card-header>
         <ng-container *ngIf="item?.burger?.type == 'burger'">
-          <ion-card-title class="all-write">{{item?.burger?.nom}}</ion-card-title>
+          <ion-label class="style write">{{item?.burger?.nom}}</ion-label>
         </ng-container>
         <ng-container *ngIf="item?.menu?.type == 'menu'" >
-          <ion-card-title class="all-write">{{item?.menu?.nom}}</ion-card-title>
+          <ion-label class="style write">{{item?.menu?.nom}}</ion-label>
         </ng-container>
       </ion-card-header>
       <ion-card-content>
@@ -27,8 +27,7 @@
               <ng-container *ngIf="item?.menu?.type == 'menu'" >
                 <img src="data:image/png;base64,{{item?.menu?.image}}">
               </ng-container>
-             
-              <b class="write">(x{{item?.quantite}})</b>
+              <br>
               <ng-container *ngIf="item?.burger?.type == 'burger'">
                 <b class="text">{{item?.burger?.prix * item?.quantite}} fcfa</b>
               </ng-container>
@@ -38,9 +37,19 @@
             </ion-label>
           </ion-col>
           <ion-col size="4" class="ion-text-right">
-            <ion-button fill="clear" >
-              <ion-icon color="primary" name="add"></ion-icon>
-            </ion-button>
+            <div class="d-flex mb-4" class="qte">
+              <ion-button fill="clear" >
+                <ion-icon class="write" name="remove-outline"></ion-icon>
+              </ion-button>
+          
+              <div class="form-outline">
+                <input id="form1" min="1" name="quantity" value="{{item?.quantite}}" type="number" class="form-control" />
+              </div>
+          
+              <ion-button fill="clear" >
+                <ion-icon class="write" name="add"></ion-icon>
+              </ion-button>
+            </div>
             <ion-button fill="clear" >
               <ion-icon color="danger" name="trash"></ion-icon>
             </ion-button>

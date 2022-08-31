@@ -5,7 +5,8 @@ import { CatalogueService } from '../shared/services/catalogue.service';
 import { Observable } from 'rxjs';
 import { BurgerCommande, MenuCommande } from '../shared/models/panier';
 import { CartServiceService } from '../shared/services/cart-service.service';
-import { ToastController } from '@ionic/angular';
+import { ToastService } from '../shared/services/toast.service';
+
 
 @Component({
   selector: 'app-detail',
@@ -23,7 +24,7 @@ export class DetailPage implements OnInit {
     private catalogueServ:CatalogueService,
     private route: ActivatedRoute,
     private cartServ: CartServiceService,
-    public toastController: ToastController,
+    private toast : ToastService
 
   ) { }
 
@@ -76,16 +77,9 @@ export class DetailPage implements OnInit {
         this.cartServ.addMenu(menu)
   
       }
+      this.toast.presentToast("votre  produit a bien été ajouté dans le panier","success")
   }
-    /* toast */
-    async presentToast() {
-      const toast = await this.toastController.create({
-        message: 'Connexion reussie',
-        duration: 2000,
-        color:"success"
-      });
-      toast.present();
-    }
+
 
 }
 

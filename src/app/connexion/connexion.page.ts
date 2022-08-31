@@ -6,6 +6,7 @@ import { AuthServService } from '../shared/services/auth-serv.service';
 import { StorageService } from '../shared/services/storage.service';
 import jwt_decode from "jwt-decode";
 import { TokenService } from '../shared/services/token.service';
+import { ToastService } from '../shared/services/toast.service';
 @Component({
   selector: 'app-connexion',
   templateUrl: './connexion.page.html',
@@ -21,7 +22,7 @@ export class ConnexionPage implements OnInit {
   constructor(
     private authServ : AuthServService,
     private router : Router,
-    public toastController: ToastController,
+    private toast : ToastService,
     private storage: StorageService,
     private tokenServ : TokenService
   ) { }
@@ -44,6 +45,7 @@ export class ConnexionPage implements OnInit {
           else{
             this.router.navigate(['/livreur'])
           }
+          this.toast.presentToast("connexion reussie","success")
       },
       err=>{
         console.log(err)
@@ -52,14 +54,5 @@ export class ConnexionPage implements OnInit {
     )
   }
 
-  /* toast */
-  async presentToast() {
-    const toast = await this.toastController.create({
-      message: 'Connexion reussie',
-      duration: 2000,
-      color:"success"
-    });
-    toast.present();
-  }
 
 }

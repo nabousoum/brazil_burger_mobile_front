@@ -3,6 +3,7 @@ import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner/ngx';
 import { Result } from '@zxing/library';
 import { CommandeService } from '../shared/services/commande.service';
 import { StorageService } from '../shared/services/storage.service';
+import { ToastService } from '../shared/services/toast.service';
 @Component({
   selector: 'app-scan',
   templateUrl: './scan.page.html',
@@ -21,6 +22,7 @@ export class ScanPage implements OnInit {
     private qrScanner: QRScanner,
     private comServ: CommandeService,
     private storage: StorageService,
+    private toast : ToastService
   ) {
     this.scancode();
    }
@@ -68,6 +70,7 @@ export class ScanPage implements OnInit {
             console.log(err);
           }
         )
+        this.toast.presentToast("commande validée","success")
     }
     this.qrResultString = resultString;
   }
