@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner/ngx';
 import { Result } from '@zxing/library';
+import { CommandeService } from '../shared/services/commande.service';
+import { StorageService } from '../shared/services/storage.service';
 @Component({
   selector: 'app-scan',
   templateUrl: './scan.page.html',
@@ -12,10 +14,12 @@ export class ScanPage implements OnInit {
   textScanned: string = '';
   //qrResult: Result;
   qrResultString: string;
+  token:any
 
   constructor(
     private qrScanner: QRScanner,
-    
+    private comServ: CommandeService,
+    private storage: StorageService,
   ) {
     this.scancode();
    }
@@ -47,8 +51,18 @@ export class ScanPage implements OnInit {
 
   /* test success scan */
 
-  handleQrCodeResult(resultString: string) {
+ async handleQrCodeResult(resultString: any) {
+    resultString = JSON.parse(resultString);
+    let idCom = resultString.idCommande
+    alert(idCom)
     console.log('Result: ', resultString);
+    await this.storage.getData('token').then((data)=>{
+      this.token = data})
+    this.comServ.validerCommande(idCom,this.token).subscribe(
+      err=>{
+        console.log(err);
+      }
+    )
     this.qrResultString = resultString;
   }
 

@@ -37,9 +37,12 @@ export class CommandesPage implements OnInit {
     })
      
   }
+
   navigateTo(url) {
     this.router.navigateByUrl(url)
   }
+
+  /* annuler commande */
   async CommandetoEdit(id:any){
     await this.storage.getData('token').then((data)=>{
     this.token = data})

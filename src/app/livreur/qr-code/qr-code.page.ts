@@ -28,8 +28,8 @@ export class QrCodePage implements OnInit {
      this.comServ.detailCommande(this.id,token).subscribe(data=>{
       this.dataQrCode = JSON.stringify(
         {
-          "id commande" : data.id,
-          "id client" : data.client.id
+          "idCommande" : data.id,
+          "idClient" : data.client.id
         }
       )
      })

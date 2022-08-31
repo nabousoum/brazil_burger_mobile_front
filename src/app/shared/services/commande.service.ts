@@ -68,4 +68,16 @@ export class CommandeService {
     const body = {"etat": "annule"}
     return this.http.put<number>(this.urlDetail+"/"+id,body,httpOptions);
   }
+  
+  /* valider commande  */
+  validerCommande (id:any,token:any):Observable<number>{
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization': `Bearer ${token}`
+      })
+    }
+    const body = {"etat": "paye"}
+    return this.http.put<number>(this.urlDetail+"/"+id,body,httpOptions);
+  }
 }
