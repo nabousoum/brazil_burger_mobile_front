@@ -13,6 +13,8 @@ export class QrCodePage implements OnInit {
   dataQrCode:string
   id:any
   token:any
+  showCamera = false;
+  textScanned: string = '';
 
   constructor(
     private comServ:CommandeService,
@@ -24,7 +26,12 @@ export class QrCodePage implements OnInit {
     this.id = this.route.snapshot.paramMap.get('id');
     let token =  await this.storage.getData('token')
      this.comServ.detailCommande(this.id,token).subscribe(data=>{
-      this.dataQrCode = "idClient "+data.client.id
+      this.dataQrCode = JSON.stringify(
+        {
+          "id commande" : data.id,
+          "id client" : data.client.id
+        }
+      )
      })
   }
 

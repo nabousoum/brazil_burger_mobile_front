@@ -11,4 +11,10 @@
   <div class="code">
     <qrcode [qrdata]="dataQrCode"  [width]="256" ></qrcode>
   </div>
+  <ion-item  lines="none">
+    <ion-label>
+      <p>Texte du QR Code</p>
+      <h2><b>{{ textScanned }}</b></h2>
+    </ion-label>
+  </ion-item>
 </ion-content>

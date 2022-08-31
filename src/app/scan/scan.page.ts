@@ -1,12 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner/ngx';
-
+import { Result } from '@zxing/library';
 @Component({
   selector: 'app-scan',
   templateUrl: './scan.page.html',
   styleUrls: ['./scan.page.scss'],
 })
 export class ScanPage implements OnInit {
+
+  showCamera = false;
+  textScanned: string = '';
+  //qrResult: Result;
+  qrResultString: string;
 
   constructor(
     private qrScanner: QRScanner,
@@ -38,6 +43,13 @@ export class ScanPage implements OnInit {
        }
     })
     .catch((e: any) => console.log('Error is', e));
+  }
+
+  /* test success scan */
+
+  handleQrCodeResult(resultString: string) {
+    console.log('Result: ', resultString);
+    this.qrResultString = resultString;
   }
 
 }
