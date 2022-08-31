@@ -6,60 +6,96 @@
     <ion-title>panier</ion-title>
   </ion-toolbar>
 </ion-header>
-<ion-content>
-  <ion-list>
-    <ion-card *ngFor="let item of items">
-      <ion-card-header>
-        <ng-container *ngIf="item?.burger?.type == 'burger'">
-          <ion-label class="style write">{{item?.burger?.nom}}</ion-label>
-        </ng-container>
-        <ng-container *ngIf="item?.menu?.type == 'menu'" >
-          <ion-label class="style write">{{item?.menu?.nom}}</ion-label>
-        </ng-container>
-      </ion-card-header>
-      <ion-card-content>
-        <ion-row class="ion-align-items-center">
-          <ion-col size="8">
-            <ion-label class="name">
-              <ng-container *ngIf="item?.burger?.type == 'burger'">
-                <img src="data:image/png;base64,{{item?.burger?.image}}">
-              </ng-container>
-              <ng-container *ngIf="item?.menu?.type == 'menu'" >
-                <img src="data:image/png;base64,{{item?.menu?.image}}">
-              </ng-container>
-              <br>
-              <ng-container *ngIf="item?.burger?.type == 'burger'">
-                <b class="text">{{item?.burger?.prix * item?.quantite}} fcfa</b>
-              </ng-container>
-              <ng-container *ngIf="item?.menu?.type == 'menu'" >
-                <b class="text">{{item?.menu?.prix * item?.quantite}} fcfa</b>
-              </ng-container>
-            </ion-label>
-          </ion-col>
-          <ion-col size="4" class="ion-text-right">
-            <div class="d-flex mb-4" class="qte">
-              <ion-button fill="clear" >
-                <ion-icon class="write" name="remove-outline"></ion-icon>
-              </ion-button>
-          
-              <div class="form-outline">
-                <input id="form1" min="1" name="quantity" value="{{item?.quantite}}" type="number" class="form-control" />
+<ng-container *ngIf="items.length == 0">
+    <ion-content>
+      <div class="panierVide">
+        <h1 class="write">Votre panier est vide</h1>
+        <ion-img src="assets/panierVide.png"></ion-img>
+      </div>
+    </ion-content>
+</ng-container>
+<ng-container *ngIf="items.length != 0">
+  <ion-content>
+    <ion-list>
+      <ion-card *ngFor="let item of items let i=index">
+        <ion-card-header>
+          <ng-container *ngIf="item?.burger?.type == 'burger'">
+            <ion-label class="style write">{{item?.burger?.nom}}</ion-label>
+          </ng-container>
+          <ng-container *ngIf="item?.menu?.type == 'menu'" >
+            <ion-label class="style write">{{item?.menu?.nom}}</ion-label>
+          </ng-container>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-row class="ion-align-items-center">
+            <ion-col size="8">
+              <ion-label class="name">
+                <ng-container *ngIf="item?.burger?.type == 'burger'">
+                  <img src="data:image/png;base64,{{item?.burger?.image}}">
+                </ng-container>
+                <ng-container *ngIf="item?.menu?.type == 'menu'" >
+                  <img src="data:image/png;base64,{{item?.menu?.image}}">
+                </ng-container>
+                <br>
+                <ng-container *ngIf="item?.burger?.type == 'burger'">
+                  <b class="text">{{item?.burger?.prix * item?.quantite}} fcfa</b>
+                </ng-container>
+                <ng-container *ngIf="item?.menu?.type == 'menu'" >
+                  <b class="text">{{item?.menu?.prix * item?.quantite}} fcfa</b>
+                </ng-container>
+              </ion-label>
+            </ion-col>
+            <ion-col size="4" class="ion-text-right">
+              <div class="d-flex mb-4" class="qte">
+                <ng-container *ngIf="item?.burger?.type == 'burger'">
+                  <ion-button (click)="changeQteInCart(item.burger,'moins')" fill="clear" >
+                    <ion-icon class="write" name="remove-outline"></ion-icon>
+                  </ion-button>
+              
+                  <div class="form-outline">
+                    <input id="form1" min="1" name="quantity" value="{{item?.quantite}}" type="number" class="form-control" />
+                  </div>
+              
+                  <ion-button  (click)="changeQteInCart(item.burger,'plus')" fill="clear" >
+                    <ion-icon class="write" name="add"></ion-icon>
+                  </ion-button>
+                </ng-container>
+                <ng-container *ngIf="item?.menu?.type == 'menu'">
+                  <ion-button (click)="changeQteInCart(item.menu,'moins')" fill="clear" >
+                    <ion-icon class="write" name="remove-outline"></ion-icon>
+                  </ion-button>
+              
+                  <div class="form-outline">
+                    <input id="form1" min="1" name="quantity" value="{{item?.quantite}}" type="number" class="form-control" />
+                  </div>
+              
+                  <ion-button (click)="changeQteInCart(item.menu,'plus')" fill="clear" >
+                    <ion-icon class="write" name="add"></ion-icon>
+                  </ion-button>
+                </ng-container>
+               
               </div>
-          
-              <ion-button fill="clear" >
-                <ion-icon class="write" name="add"></ion-icon>
-              </ion-button>
-            </div>
-            <ion-button fill="clear" >
-              <ion-icon color="danger" name="trash"></ion-icon>
-            </ion-button>
-          </ion-col>
-        </ion-row>
-      </ion-card-content>
-    </ion-card>
-  </ion-list>
-  <div class="commande">
-    <p>Total commande: {{montant}} fcfa</p>
-    <ion-button class="all">Commander</ion-button>
-  </div>
-</ion-content>
+              <ng-container *ngIf="item?.burger?.type == 'burger'">
+                <ion-button (click)="onDelete(item.burger)"  fill="clear" >
+                  <ion-icon color="danger" name="trash"></ion-icon>
+                </ion-button>
+              </ng-container>
+              <ng-container *ngIf="item?.menu?.type == 'menu'">
+                <ion-button (click)="onDelete(item.menu)"  fill="clear" >
+                  <ion-icon color="danger" name="trash"></ion-icon>
+                </ion-button>
+              </ng-container>
+             
+            </ion-col>
+          </ion-row>
+        </ion-card-content>
+      </ion-card>
+    </ion-list>
+    <div class="commande">
+      <p>Total commande: {{montant}} fcfa</p>
+      <ion-button (click)="validerCommande()" class="all">Commander</ion-button>
+    </div>
+
+  </ion-content>
+</ng-container>
+

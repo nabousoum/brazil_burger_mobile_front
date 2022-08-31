@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+import { Panier } from '../models/panier';
 import { StorageService } from './storage.service';
 
 
@@ -80,4 +81,16 @@ export class CommandeService {
     const body = {"etat": "paye"}
     return this.http.put<number>(this.urlDetail+"/"+id,body,httpOptions);
   }
+
+    /* fonction d enregistrement d une commande */
+    saveCommande(object:Panier,token){
+      const httpOptions = {
+        headers: new HttpHeaders({
+          'Content-Type':  'application/json',
+          'Authorization': `Bearer ${token}`
+        })
+      };
+      //console.log(httpOptions)
+      return this.http.post(this.urlDetail,JSON.stringify(object),httpOptions)
+    }
 }

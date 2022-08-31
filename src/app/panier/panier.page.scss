@@ -49,3 +49,14 @@ input{
     --background: #C2B364;
     margin-left: 5%;
 }
+.panierVide{
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    margin-top: 45%;
+   
+}
+ion-img{
+    height: 200px;
+}
