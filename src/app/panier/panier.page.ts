@@ -18,6 +18,7 @@ export class PanierPage implements OnInit {
   items:any = []
   montant:any
   token:any
+  commandes:any
 
   constructor(
     private cartServ:CartServiceService,
@@ -37,18 +38,20 @@ export class PanierPage implements OnInit {
 
     /* fonction de validation de commande */
    async validerCommande(){
-    await this.storage.getData('token').then((data)=>{
+     await this.storage.getData('token').then((data)=>{
       this.token = data})
-      console.log("token com "+this.token)
+     console.log("token com "+this.token)
       if(this.token != null){
-        alert("hello")
-        let zone={ id:1}
-        this.cartServ.newCart.value.zone = zone
-        console.log( "test commande"+this.cartServ.newCart.value)
+      //alert("hello")
+      let zone={ id:1}
+      let test = this.cartServ.newCart.value
+      console.log(" test commande "+test)
+
+       this.cartServ.newCart.value.zone = zone
         this.comServ.saveCommande(this.cartServ.newCart.value,this.token).subscribe(
           err=> console.log(err),
           )
-        //this.cartServ.removeAllCart()
+        this.cartServ.removeAllCart()
         this.toast.presentToast("votre commande a bien été enregistrée","success")
       }
       else{
@@ -114,10 +117,5 @@ export class PanierPage implements OnInit {
       }
      
   }
-
-  /* modal */
-  
-
-
 
 }

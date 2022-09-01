@@ -20,7 +20,6 @@ export class CartServiceService implements OnInit{
       if(data){
         this.newCart.next(data)
       }
-     
     })
    }
 
@@ -29,7 +28,6 @@ export class CartServiceService implements OnInit{
     //   if(ls){
     //     this.newCart.next(data)
     //   }
-     
     // })
    }
 

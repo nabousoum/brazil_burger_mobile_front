@@ -61,6 +61,7 @@ export class DetailPage implements OnInit {
           burger:detail.burger
         }
         this.cartServ.addBurger(burger)
+        console.log(this.cartServ.newCart.value)
       }
       if (detail.menu){ 
         let menu:MenuCommande = {
@@ -75,7 +76,7 @@ export class DetailPage implements OnInit {
           }
         }
         this.cartServ.addMenu(menu)
-  
+        
       }
       this.toast.presentToast("votre  produit a bien été ajouté dans le panier","success")
   }
