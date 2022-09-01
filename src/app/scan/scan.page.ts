@@ -72,6 +72,9 @@ export class ScanPage implements OnInit {
         )
         this.toast.presentToast("commande validée","success")
     }
+    else{
+      this.toast.presentToast("le scan n a pas pu marché","danger")
+    }
     this.qrResultString = resultString;
   }
 

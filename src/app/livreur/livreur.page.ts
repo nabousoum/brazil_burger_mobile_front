@@ -12,7 +12,7 @@ export class LivreurPage implements OnInit {
   id:any
   token:any
   livraisons:any[] = []
-  
+  searchTerm = "en cours"
 
   constructor(
     private storage : StorageService,
@@ -26,8 +26,6 @@ export class LivreurPage implements OnInit {
       this.token = data})
     this.livraisonServ.livraisonByLivreur(this.token).subscribe(
       data=>{
-        console.log(data);
-        console.log(this.id);
         this.livraisons = data.filter(livraison=>livraison.livreur.id === this.id)
       }
     )
@@ -44,4 +42,9 @@ export class LivreurPage implements OnInit {
 
     }
   };
+
+    /* filtre segment */
+    segmentChanged(ev: any) {
+      console.log('Segment changed', ev);
+    } 
 }

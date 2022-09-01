@@ -6,7 +6,7 @@ import { CommandeList } from "../models/commandeList";
 })
 
 export class CommandeFilter implements PipeTransform{
-    transform(commandes: CommandeList[], searchTerm: string) {
+    transform(commandes: any, searchTerm: string) {
         if(!commandes || !searchTerm){
             return commandes
         }

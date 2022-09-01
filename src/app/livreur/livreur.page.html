@@ -13,7 +13,7 @@
     </ion-content>
 </ng-container>
 <ng-container  *ngIf="livraisons != undefined" >
-  <ion-content>
+  <ion-content>    
     <ion-slides pager="true" [options]="slideOpts">
       <ion-slide>
         <img  src="assets/livreur1.webp" >
@@ -25,16 +25,26 @@
     <ion-item>
       <b class="title write">Liste des livraisons</b>
     </ion-item>
-    <ion-list *ngFor="let livraison of livraisons">
+    <ion-segment [(ngModel)]="searchTerm">
+      <ion-segment-button value="en cours">
+        <ion-label>En cours</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="valide">
+        <ion-label>Validée</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+    <ion-list *ngFor="let livraison of livraisons | commandeFilter:searchTerm">
       <ng-container *ngFor="let commande of livraison.commandes">
     <ion-item >
         <ion-label>
           <b>
             {{commande.client.prenom}} {{commande.client.nom}} - {{commande.zone.libelle}} 
           </b>
-          <ion-button routerLink="qr-code/{{commande.id}}" class="all qr-code">
-            <ion-icon  name="qr-code-outline"></ion-icon>
-          </ion-button>
+          <ng-container *ngIf="commande.etat=='enCoursDeLivraison'">
+            <ion-button routerLink="qr-code/{{commande.id}}" class="all qr-code">
+              <ion-icon  name="qr-code-outline"></ion-icon>
+            </ion-button>
+          </ng-container>
           <br>
           <p  class="write">Total : {{commande.montantCommande}} fcfa - {{commande.client.telephone}}</p>
         </ion-label>

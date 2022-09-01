@@ -12,6 +12,7 @@ export interface User{
     nom?:string
     prenom?:string
     login?:string
+    telephone?:string
 }
 
 export interface Zone{

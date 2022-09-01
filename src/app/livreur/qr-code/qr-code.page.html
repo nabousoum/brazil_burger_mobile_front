@@ -8,13 +8,13 @@
 </ion-header>
 
 <ion-content>
-  <div class="code">
+  <div class="write code">
+    <ion-label>
+      <h2>Veuillez scanner le qr code</h2>
+    </ion-label>
     <qrcode [qrdata]="dataQrCode"  [width]="256" ></qrcode>
   </div>
   <ion-item  lines="none">
-    <ion-label>
-      <p>Texte du QR Code</p>
-      <h2><b>{{ textScanned }}</b></h2>
-    </ion-label>
+   
   </ion-item>
 </ion-content>

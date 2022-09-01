@@ -7,6 +7,7 @@ import { LivreurPageRoutingModule } from './livreur-routing.module';
 import { LivreurPage } from './livreur.page';
 import { LoaderComponent } from '../loader/loader.component';
 import { IonicHeaderParallaxModule } from 'ionic-header-parallax';
+import { CommandeFilter } from '../shared/services/commande-filter.pipe';
 
 @NgModule({
   imports: [
@@ -18,7 +19,8 @@ import { IonicHeaderParallaxModule } from 'ionic-header-parallax';
   ],
   declarations: [
     LivreurPage,
-    LoaderComponent
+    LoaderComponent,
+    CommandeFilter,
   ]
 })
 export class LivreurPageModule {}

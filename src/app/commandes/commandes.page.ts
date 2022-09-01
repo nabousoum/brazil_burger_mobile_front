@@ -50,7 +50,8 @@ export class CommandesPage implements OnInit {
     location.reload()
     this.router.navigate(['/commandes'])
   }
-  
+
+  /* filtre segment */
   segmentChanged(ev: any) {
     console.log('Segment changed', ev);
   } 
